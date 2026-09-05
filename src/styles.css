@@ -1,0 +1,526 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-section: var(--section);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-glow: var(--primary-glow);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --shadow-glow: 0 10px 40px -10px color-mix(in oklab, var(--primary) 40%, transparent);
+  --shadow-elegant: 0 8px 30px -12px color-mix(in oklab, var(--primary) 20%, transparent);
+}
+
+:root {
+  --radius: 0.875rem;
+  /* Brand */
+  --primary: oklch(0.56 0.19 260); /* #2563EB */
+  --primary-foreground: oklch(1 0 0);
+  --primary-glow: oklch(0.66 0.17 258);
+
+  --background: oklch(1 0 0); /* #FFFFFF */
+  --foreground: oklch(0.18 0.04 265); /* #0F172A */
+  --section: oklch(0.975 0.006 247); /* #F8FAFC */
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.04 265);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.04 265);
+  --secondary: oklch(0.968 0.007 247);
+  --secondary-foreground: oklch(0.18 0.04 265);
+  --muted: oklch(0.968 0.007 247);
+  --muted-foreground: oklch(0.5 0.03 258);
+  --accent: oklch(0.95 0.03 258);
+  --accent-foreground: oklch(0.56 0.19 260);
+  --destructive: oklch(0.6 0.22 27);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.92 0.013 255);
+  --input: oklch(0.92 0.013 255);
+  --ring: oklch(0.56 0.19 260);
+}
+
+.dark {
+  --background: oklch(0.17 0.03 265); /* #0B1220 */
+  --foreground: oklch(0.92 0.01 258); /* #E5E7EB */
+  --section: oklch(0.22 0.03 265); /* #111827 */
+  --card: oklch(0.28 0.028 265); /* #1F2937 */
+  --card-foreground: oklch(0.92 0.01 258);
+  --popover: oklch(0.28 0.028 265);
+  --popover-foreground: oklch(0.92 0.01 258);
+  --primary: oklch(0.66 0.17 258);
+  --primary-foreground: oklch(1 0 0);
+  --primary-glow: oklch(0.72 0.15 258);
+  --secondary: oklch(0.28 0.028 265);
+  --secondary-foreground: oklch(0.92 0.01 258);
+  --muted: oklch(0.28 0.028 265);
+  --muted-foreground: oklch(0.72 0.02 258);
+  --accent: oklch(0.32 0.05 265);
+  --accent-foreground: oklch(0.92 0.01 258);
+  --destructive: oklch(0.65 0.2 27);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 12%);
+  --ring: oklch(0.66 0.17 258);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    transition:
+      background-color 300ms ease,
+      color 300ms ease;
+  }
+}
+
+@utility glass-nav {
+  background: color-mix(in oklab, var(--background) 70%, transparent);
+  backdrop-filter: saturate(160%) blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+
+@utility card-hover {
+  transition:
+    transform 250ms ease,
+    box-shadow 250ms ease,
+    border-color 250ms ease;
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-elegant);
+    border-color: color-mix(in oklab, var(--primary) 40%, var(--border));
+  }
+}
+
+@utility btn-primary-glow {
+  background: linear-gradient(135deg, var(--primary), var(--primary-glow));
+  color: var(--primary-foreground);
+  box-shadow: var(--shadow-glow);
+  transition:
+    transform 200ms ease,
+    box-shadow 200ms ease,
+    opacity 200ms ease;
+  &:hover {
+    transform: translateY(-1px);
+    opacity: 0.95;
+  }
+}
+
+@utility bg-hero-radial {
+  background:
+    radial-gradient(
+      60% 50% at 80% 10%,
+      color-mix(in oklab, var(--primary) 18%, transparent),
+      transparent 60%
+    ),
+    radial-gradient(
+      50% 40% at 10% 20%,
+      color-mix(in oklab, var(--primary-glow) 12%, transparent),
+      transparent 60%
+    );
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fade-in-soft {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.6s ease-out both;
+}
+.animate-fade-in-soft {
+  animation: fade-in-soft 0.6s ease-out both;
+}
+
+/* How It Works section animations */
+@keyframes how-section-entry {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes how-step-in {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes how-line-draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes how-icon-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes how-number-pop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes how-text-fade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.how-section-animate {
+  opacity: 0;
+}
+
+.how-section-visible .how-section-animate {
+  animation: how-section-entry 0.8s ease-out forwards;
+}
+
+.how-step-animate {
+  opacity: 0;
+}
+
+.how-section-visible .how-step-animate {
+  animation: how-step-in 0.7s ease-out forwards;
+}
+
+.how-line-animate {
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.how-section-visible .how-line-animate {
+  animation: how-line-draw 0.9s ease-out forwards;
+}
+
+.how-icon-animate {
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.how-section-visible .how-icon-animate {
+  animation: how-icon-pulse 2s ease-in-out infinite;
+}
+
+.how-icon-animate:hover {
+  animation-play-state: paused;
+  transform: scale(1.1);
+  box-shadow: 0 0 24px color-mix(in oklab, var(--primary) 55%, transparent);
+}
+
+.how-number-animate {
+  opacity: 0;
+}
+
+.how-section-visible .how-number-animate {
+  animation: how-number-pop 0.4s ease-out forwards;
+}
+
+.how-text-animate {
+  opacity: 0;
+}
+
+.how-section-visible .how-text-animate {
+  animation: how-text-fade 0.5s ease-out forwards;
+}
+
+.how-step-card {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.how-step-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-elegant);
+  border-color: color-mix(in oklab, var(--primary) 40%, var(--border));
+  background-color: color-mix(in oklab, var(--card) 60%, transparent);
+}
+
+/* Scroll reveal */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.reveal {
+  opacity: 0;
+}
+.reveal-in {
+  animation: reveal-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Section rhythm helpers */
+@utility section-y {
+  padding-top: 4.5rem;
+  padding-bottom: 4.5rem;
+  @media (min-width: 1024px) {
+    padding-top: 6.5rem;
+    padding-bottom: 6.5rem;
+  }
+}
+
+@utility container-page {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 80rem;
+  padding-inline: 1rem;
+  @media (min-width: 640px) {
+    padding-inline: 1.5rem;
+  }
+  @media (min-width: 1024px) {
+    padding-inline: 2rem;
+  }
+}
+
+@utility nav-link {
+  position: relative;
+  transition:
+    color 250ms ease,
+    background-color 250ms ease;
+}
+
+@utility page-hero {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid color-mix(in oklab, var(--border) 80%, transparent);
+  background:
+    radial-gradient(55% 80% at 100% 0%, color-mix(in oklab, var(--primary-glow) 16%, transparent), transparent 70%),
+    radial-gradient(45% 70% at 0% 15%, color-mix(in oklab, var(--primary) 11%, transparent), transparent 70%),
+    var(--background);
+}
+
+@utility page-hero-grid {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--primary) 5%, transparent), transparent 72%),
+    radial-gradient(circle at 88% 12%, color-mix(in oklab, var(--primary-glow) 22%, transparent), transparent 24rem),
+    var(--background);
+}
+
+@utility section-band {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, color-mix(in oklab, var(--primary) 8%, transparent) 1px, transparent 1px),
+    linear-gradient(color-mix(in oklab, var(--primary) 8%, transparent) 1px, transparent 1px),
+    var(--section);
+  background-size: 44px 44px;
+}
+
+@utility section-frame {
+  position: relative;
+  border-radius: 1.5rem;
+  border: 1px solid color-mix(in oklab, var(--border) 86%, transparent);
+  background: color-mix(in oklab, var(--background) 80%, transparent);
+  box-shadow: 0 30px 70px -56px color-mix(in oklab, var(--foreground) 75%, transparent);
+}
+
+@utility surface-card {
+  border: 1px solid color-mix(in oklab, var(--border) 85%, transparent);
+  background: color-mix(in oklab, var(--card) 92%, transparent);
+  box-shadow: 0 18px 45px -36px color-mix(in oklab, var(--foreground) 58%, transparent);
+}
+
+@utility section-kicker {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid color-mix(in oklab, var(--primary) 22%, var(--border));
+  border-radius: 9999px;
+  background: color-mix(in oklab, var(--primary) 7%, transparent);
+  padding: 0.35rem 0.7rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--primary);
+}
+
+@utility enterprise-dark {
+  position: relative;
+  overflow: hidden;
+  --foreground: oklch(0.24 0.055 255);
+  --muted-foreground: oklch(0.48 0.035 255);
+  --card: oklch(1 0 0);
+  --section: oklch(0.97 0.012 245);
+  --border: oklch(0.88 0.03 250);
+  --secondary: oklch(0.94 0.025 247);
+  --secondary-foreground: oklch(0.24 0.055 255);
+  --muted: oklch(0.95 0.018 247);
+  --accent: oklch(0.91 0.05 250);
+  --accent-foreground: oklch(0.35 0.12 255);
+  background:
+    radial-gradient(58% 68% at 100% 0%, rgba(79, 140, 255, 0.18), transparent 68%),
+    radial-gradient(50% 54% at 0% 100%, rgba(137, 198, 255, 0.16), transparent 72%),
+    linear-gradient(180deg, #fafdff 0%, #edf6ff 100%);
+  color: var(--foreground);
+}
+
+@utility enterprise-light {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(36% 42% at 0% 0%, color-mix(in oklab, var(--primary) 9%, transparent), transparent 72%),
+    var(--background);
+}
+
+@utility dark-panel {
+  border: 1px solid rgba(96, 165, 250, 0.24);
+  background: rgba(255, 255, 255, 0.84);
+  box-shadow: 0 25px 65px -42px rgba(30, 94, 160, 0.32);
+  backdrop-filter: blur(14px);
+}
+
+@utility dark-kicker {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(145, 187, 255, 0.28);
+  border-radius: 9999px;
+  background: rgba(79, 140, 255, 0.12);
+  padding: 0.35rem 0.7rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #9ec4ff;
+}
+
+.enterprise-dark .text-muted-foreground {
+  color: var(--muted-foreground) !important;
+}
+
+.enterprise-dark .section-kicker {
+  border-color: rgba(37, 99, 235, 0.22);
+  background: rgba(59, 130, 246, 0.08);
+  color: var(--primary);
+}
+
+.enterprise-dark .text-slate-300,
+.enterprise-dark .text-white {
+  color: var(--foreground) !important;
+}
+
+.enterprise-dark .dark-panel .text-slate-300,
+.enterprise-dark .dark-panel .text-white {
+  color: var(--foreground) !important;
+}
+
+.enterprise-dark .dark-panel .bg-black\/15 {
+  background-color: rgb(219 234 254 / 65%) !important;
+}
+
+.site-footer {
+  background:
+    radial-gradient(55% 90% at 100% 0%, rgb(79 140 255 / 24%), transparent 72%),
+    linear-gradient(180deg, #16294b 0%, #0f203d 100%);
+  color: #e7f1ff;
+}
+
+.site-footer .footer-link {
+  color: #b9cbe3;
+}
+
+.site-footer .footer-link:hover {
+  color: #ffffff;
+}
+
+.site-footer .text-foreground {
+  color: #ffffff;
+}
+
+.site-footer .text-muted-foreground {
+  color: #b9cbe3;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
