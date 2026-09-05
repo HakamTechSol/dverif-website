@@ -1,17 +1,48 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { SiteLayout } from "@/components/site-layout";
 import { RequestAccessModal } from "@/components/request-access-modal";
 import { DEFAULT_MARKETING_PLANS, fetchMarketingPlans, type MarketingPlan } from "@/config/api";
-import { PlanCard, SectionHeader } from "./index";
+import { PlanCard } from "./index";
+
+// Local SectionHeader component for pricing page
+function PricingSectionHeader({
+  eyebrow,
+  title,
+  subtitle,
+}: {
+  eyebrow?: string;
+  title: import("react").ReactNode;
+  subtitle?: import("react").ReactNode;
+}) {
+  return (
+    <div className="mx-auto max-w-2xl text-center">
+      {eyebrow && (
+        <div className="section-kicker">{eyebrow}</div>
+      )}
+      <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">{title}</h2>
+      {subtitle && <div className="mt-4 text-muted-foreground">{subtitle}</div>}
+    </div>
+  );
+}
 
 export const Route = createFileRoute("/pricing")({
   head: () => ({
     meta: [
-      { title: "Pricing — Dverif" },
-      { name: "description", content: "Straightforward document-verification plans for every team." },
+      { title: "Pricing — Dverif | Document Verification Plans & Pricing" },
+      { name: "description", content: "Straightforward document-verification plans for every team. Choose monthly flexibility or yearly savings with transparent pricing for secure document verification." },
+      { name: "keywords", content: "document verification pricing, verification plans, secure verification costs, document authentication pricing, background check pricing, verification service plans" },
       { property: "og:title", content: "Pricing — Dverif" },
-      { property: "og:description", content: "Choose monthly flexibility or yearly savings." },
+      { property: "og:description", content: "Choose monthly flexibility or yearly savings with transparent pricing for secure document verification." },
+      { property: "og:url", content: "https://dverif.com/pricing" },
+      { property: "og:image", content: "https://dverif.com/assets/og-image.png" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Pricing — Dverif" },
+      { name: "twitter:description", content: "Choose monthly flexibility or yearly savings with transparent pricing for secure document verification." },
+      { name: "twitter:image", content: "https://dverif.com/assets/og-image.png" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://dverif.com/pricing" },
     ],
   }),
   component: Page,
@@ -64,7 +95,14 @@ function Page() {
 
       <section className="enterprise-dark section-y">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-          <SectionHeader title="Not Sure Which Plan?" subtitle="Schedule a meeting and our team will help you choose the right plan." />
+          <PricingSectionHeader
+            title="Not Sure Which Plan?"
+            subtitle={
+              <>
+                Schedule a meeting and our team will help you choose the right plan. <Link to="/contact" className="text-primary hover:underline">Contact us</Link> for personalized assistance.
+              </>
+            }
+          />
          </div>
         <div className="mt-6 flex justify-center">
           <RequestAccessModal />

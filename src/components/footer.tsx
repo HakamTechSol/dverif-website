@@ -27,9 +27,9 @@ const companyLinks = [
 ] as const;
 
 const socialIcons = [
-  { label: "LinkedIn", icon: Linkedin, href: "https://www.linkedin.com", tone: "border-[#0a66c2] bg-[#0a66c2] text-white hover:bg-[#004182]" },
-  { label: "Instagram", icon: Instagram, href: "https://www.instagram.com", tone: "border-transparent bg-[linear-gradient(135deg,#f9ce34,#ee2a7b_48%,#6228d7)] text-white hover:brightness-95" },
-  { label: "Facebook", icon: Facebook, href: "https://www.facebook.com", tone: "border-[#1877f2] bg-[#1877f2] text-white hover:bg-[#0c63d4]" },
+  { label: "LinkedIn", icon: Linkedin, href: "https://www.linkedin.com/company/dverif", tone: "border-[#0a66c2] bg-[#0a66c2] text-white hover:bg-[#004182]" },
+  { label: "Instagram", icon: Instagram, href: "https://www.instagram.com/dverif", tone: "border-transparent bg-[linear-gradient(135deg,#f9ce34,#ee2a7b_48%,#6228d7)] text-white hover:brightness-95" },
+  { label: "Facebook", icon: Facebook, href: "https://www.facebook.com/dverif", tone: "border-[#1877f2] bg-[#1877f2] text-white hover:bg-[#0c63d4]" },
 ] as const;
 
 
@@ -95,10 +95,12 @@ export function Footer() {
               <img
                 key={theme}
                 src={logoSrc}
-                alt="Dverif — Document Verification Platform"
+                alt="Dverif - Secure Document Verification Platform Logo"
                 className="-ml-5 h-16 w-auto object-contain"
                 loading="lazy"
                 decoding="async"
+                width="180"
+                height="64"
               />
             </Link>
             <p className="mt-5 max-w-sm text-sm leading-6 text-muted-foreground">

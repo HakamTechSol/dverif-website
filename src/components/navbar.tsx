@@ -30,10 +30,12 @@ export function Navbar() {
             <img
               key={theme}
               src={logoSrc}
-              alt="Dverif — Document Verification Platform"
+              alt="Dverif - Secure Document Verification Platform Logo"
               className="h-9 w-auto object-contain sm:h-10 animate-fade-in"
               loading="eager"
               decoding="async"
+              width="120"
+              height="40"
             />
           </Link>
 

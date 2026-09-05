@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { SiteLayout } from "@/components/site-layout";
 import { RequestAccessModal } from "@/components/request-access-modal";
@@ -25,17 +25,26 @@ import { ReadyToSimplify } from "@/components/footer";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Dverif — Verify Documents in Minutes" },
+      { title: "Dverif — Verify Documents in Minutes | Secure Document Verification Platform" },
       {
         name: "description",
         content:
-          "Dverif is an invite-only platform to verify documents in minutes. Stop scams, cut hassle, eliminate delays.",
+          "Dverif is an invite-only platform to verify documents in minutes. Stop scams, cut hassle, eliminate delays with secure document verification for modern organizations.",
       },
+      { name: "keywords", content: "document verification, secure verification, identity verification, scam prevention, document authentication, background checks, employment verification, academic verification, certificate verification" },
       { property: "og:title", content: "Dverif — Verify Documents in Minutes" },
       {
         property: "og:description",
-        content: "Invite-only document verification for modern organizations.",
+        content: "Invite-only document verification for modern organizations. Stop scams, cut hassle, eliminate delays.",
       },
+      { property: "og:url", content: "https://dverif.com" },
+      { property: "og:image", content: "https://dverif.com/assets/og-image.png" },
+      { name: "twitter:title", content: "Dverif — Verify Documents in Minutes" },
+      { name: "twitter:description", content: "Invite-only document verification for modern organizations. Stop scams, cut hassle, eliminate delays." },
+      { name: "twitter:image", content: "https://dverif.com/assets/og-image.png" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://dverif.com" },
     ],
   }),
   component: Home,
@@ -71,7 +80,7 @@ function Hero() {
           </h1>
           <p className="mt-7 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg">
             Scams, endless back-and-forth and long delays cost you time and reputation. Dverif
-            brings issuers, verifiers, and organizations together in one clean workflow.
+            brings issuers, verifiers, and organizations together in one clean <Link to="/features" className="text-primary hover:underline">secure verification workflow</Link>.
           </p>
           <div className="mt-9 flex w-full flex-col justify-center gap-3 sm:w-auto sm:flex-row lg:justify-start">
             <RequestAccessModal />
@@ -92,6 +101,9 @@ function Hero() {
             <div className="flex items-center gap-2">
               <CheckCircle2 className="h-4 w-4 text-primary" /> Audit Trail
             </div>
+            <Link to="/pricing" className="flex items-center gap-2 text-primary hover:underline">
+              <CheckCircle2 className="h-4 w-4" /> View Pricing
+            </Link>
           </div>
         </div>
         <div className="animate-fade-in-soft w-full">
@@ -117,7 +129,10 @@ function DashboardMock() {
           muted
           loop
           playsInline
-          aria-label="Dverif platform overview"
+          aria-label="Dverif platform dashboard overview showing document verification workflow"
+          poster="/assets/video-poster.jpg"
+          width="1920"
+          height="1080"
         >
           Your browser does not support the video tag.
         </video>
@@ -155,6 +170,11 @@ function Problems() {
                 <span className="block">Verification is Broken ?</span>
 
                 <span className="block">DVerif will Fix it !</span>
+              </>
+            }
+            subtitle={
+              <>
+                Learn more about our <Link to="/features" className="text-primary hover:underline">secure verification features</Link> that protect your organization.
               </>
             }
           />
@@ -468,7 +488,7 @@ export function SectionHeader({
 }: {
   eyebrow?: string;
   title: import("react").ReactNode;
-  subtitle?: string;
+  subtitle?: import("react").ReactNode;
 }) {
   return (
     <div className="mx-auto max-w-2xl text-center">
@@ -476,7 +496,7 @@ export function SectionHeader({
         <div className="section-kicker">{eyebrow}</div>
       )}
       <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">{title}</h2>
-      {subtitle && <p className="mt-4 text-muted-foreground">{subtitle}</p>}
+      {subtitle && <div className="mt-4 text-muted-foreground">{subtitle}</div>}
     </div>
   );
 }
