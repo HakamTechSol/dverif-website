@@ -80,6 +80,7 @@ export type MarketingPlan = {
   period?: string;
   description: string;
   features: string[];
+  notIncludedFeatures?: string[];
   ctaText?: string;
   featured?: boolean;
   badge?: string;
@@ -87,22 +88,30 @@ export type MarketingPlan = {
 
 export const DEFAULT_MARKETING_PLANS: MarketingPlan[] = [
   {
+    id: "free",
+    name: "Free",
+    price: "PKR 0",
+    period: "/ Month",
+    description: "Start for free",
+    features: ["1 request in a day"],
+    notIncludedFeatures: ["Payroll Management", "Attendance Management", "Employee Management", "User Management", "Leave Management"],
+  },
+  {
     id: "monthly",
-    name: "Monthly",
-    price: "PKR 5,000",
-    period: "/ month",
+    name: "Basic",
+    price: "PKR 20,000",
+    period: "/ Month",
     description: "Flexible monthly billing",
-    features: ["Up to 50 requests / month", "1 team member", "Email support", "Basic audit log"],
+    features: ["10 request in a day", "Payroll Management", "Attendance Management", "Employee Management", "User Management", "Leave Management"],
   },
   {
     id: "yearly",
-    name: "Yearly",
-    price: "PKR 50,000",
-    period: "/ year",
+    name: "Professional",
+    price: "PKR 30,000",
+    period: "/ Month",
     description: "Best value for growing teams",
     featured: true,
-    badge: "Save 10%",
-    features: ["Unlimited requests", "Roles & permissions", "Priority support", "Advanced audit"],
+    features: ["100 request in a day", "Payroll Management", "Attendance Management", "Employee Management", "User Management", "Leave Management"],
   },
 ];
 

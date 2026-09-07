@@ -8,18 +8,18 @@ import {
   AlertTriangle,
   LayoutDashboard,
   FileCheck2,
-  ArrowRight,
+  ArrowDownRight,
   CheckCircle2,
   Building2,
   Send,
   SearchX,
   Sparkles,
-  Quote,
-  Star,
+  XCircle,
 } from "lucide-react";
 import { useInView } from "@/hooks/use-in-view";
 // import { FeatureShowcase } from "@/components/feature-showcase";
 import { ProductJourney } from "@/components/product-capabilities";
+import { VideoTestimonials } from "@/components/video-testimonials";
 import { ReadyToSimplify } from "@/components/footer";
 
 export const Route = createFileRoute("/")({
@@ -59,7 +59,7 @@ function Home() {
       {/* <DashboardPreview /> */}
       {/* <Features /> */}
       {/* <HowItWorks /> */}
-      <Testimonials />
+      <VideoTestimonials />
       <ReadyToSimplify />
     </SiteLayout>
   );
@@ -67,7 +67,7 @@ function Home() {
 
 function Hero() {
   return (
-    <section className="enterprise-dark">
+    <section className="enterprise-dark -mt-[120px] pt-[120px]">
       <div className="container-page grid items-center gap-12 pt-10 pb-16 sm:pt-14 sm:pb-20 lg:grid-cols-[.92fr_1.08fr] lg:gap-14 lg:pt-16 lg:pb-24">
         <div className="animate-fade-up flex w-full flex-col items-center text-center lg:items-start lg:text-left">
 
@@ -85,10 +85,23 @@ function Hero() {
           <div className="mt-9 flex w-full flex-col justify-center gap-3 sm:w-auto sm:flex-row lg:justify-start">
             <RequestAccessModal />
             <a
-              href="#how"
+              href="#how-it-works"
+              onClick={(e) => {
+                e.preventDefault();
+                const element = document.getElementById('how-it-works');
+                if (element) {
+                  const navbarHeight = 100;
+                  const elementPosition = element.getBoundingClientRect().top;
+                  const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+                  window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                  });
+                }
+              }}
               className="inline-flex h-11 items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/8 px-5 text-sm font-medium text-white transition-colors hover:bg-white/15"
             >
-              See how it works <ArrowRight className="h-4 w-4" />
+              See how it works <ArrowDownRight className="h-4 w-4" />
             </a>
           </div>
           <div className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm text-slate-300 lg:justify-start">
@@ -102,7 +115,7 @@ function Hero() {
               <CheckCircle2 className="h-4 w-4 text-primary" /> Audit Trail
             </div>
             <Link to="/pricing" className="flex items-center gap-2 text-primary hover:underline">
-              <CheckCircle2 className="h-4 w-4" /> View Pricing
+              
             </Link>
           </div>
         </div>
@@ -174,7 +187,7 @@ function Problems() {
             }
             subtitle={
               <>
-                Learn more about our <Link to="/features" className="text-primary hover:underline">secure verification features</Link> that protect your organization.
+                Learn more about our <Link to="/features" className="text-primary hover:underline">secure verification features</Link> that protects your organization.
               </>
             }
           />
@@ -183,129 +196,16 @@ function Problems() {
           {items.map((it) => (
             <div key={it.title} className="surface-card card-hover relative overflow-hidden rounded-2xl p-6 sm:p-7">
               <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary to-primary-glow" />
-              <div className="grid h-11 w-11 place-items-center rounded-xl bg-primary/10 text-primary">
-                <it.icon className="h-5 w-5" />
+              <div className="flex items-center gap-3">
+                <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
+                  <it.icon className="h-5 w-5" />
+                </div>
+                <h3 className="text-lg font-semibold">{it.title}</h3>
               </div>
-              <h3 className="mt-4 text-lg font-semibold">{it.title}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{it.body}</p>
+              <p className="mt-4 text-sm text-muted-foreground">{it.body}</p>
             </div>
           ))}
         </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Testimonials() {
-  const testimonials = [
-    {
-      quote:
-        "Dverif has turned a slow, manual verification process into a workflow our team can complete with confidence.",
-      name: "Ayesha Khan",
-      role: "Admissions Manager",
-      initials: "AK",
-    },
-    {
-      quote:
-        "We now have a clear audit trail for every request and can respond to applicants far more quickly.",
-      name: "Hamza Ali",
-      role: "Operations Lead",
-      initials: "HA",
-    },
-    {
-      quote:
-        "The platform makes it simple to verify documents directly at the source without the usual back-and-forth.",
-      name: "Sara Ahmed",
-      role: "People Operations",
-      initials: "SA",
-    },
-  ];
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [touchStartX, setTouchStartX] = useState<number | null>(null);
-
-  useEffect(() => {
-    const interval = window.setInterval(() => {
-      setActiveIndex((currentIndex) => (currentIndex + 1) % testimonials.length);
-    }, 5000);
-
-    return () => window.clearInterval(interval);
-  }, [testimonials.length]);
-
-  const changeSlide = (direction: -1 | 1) => {
-    setActiveIndex((currentIndex) =>
-      (currentIndex + direction + testimonials.length) % testimonials.length,
-    );
-  };
-
-  const handleTouchEnd = (touchEndX: number) => {
-    if (touchStartX === null) return;
-
-    const swipeDistance = touchStartX - touchEndX;
-    if (Math.abs(swipeDistance) > 50) {
-      changeSlide(swipeDistance > 0 ? 1 : -1);
-    }
-    setTouchStartX(null);
-  };
-
-  return (
-    <section className="enterprise-light py-12 lg:py-16">
-      <div className="container-page">
-        <div className="section-frame px-5 py-10 sm:px-8 lg:px-12 lg:py-14">
-          <SectionHeader
-            eyebrow="Testimonials"
-            title="Trusted By Thousands"
-            // subtitle="A simpler way to verify documents, reduce delays, and keep every decision accountable."
-          />
-          <div
-            className="mt-10 overflow-hidden"
-            onTouchStart={(event) => setTouchStartX(event.touches[0].clientX)}
-            onTouchEnd={(event) => handleTouchEnd(event.changedTouches[0].clientX)}
-          >
-            <div
-              className="flex transition-transform duration-700 ease-in-out"
-              style={{ transform: `translateX(-${activeIndex * 100}%)` }}
-            >
-            {testimonials.map((testimonial) => (
-              <div key={testimonial.name} className="w-full shrink-0 px-0.5">
-                <article className="surface-card mx-auto flex min-h-64 max-w-2xl flex-col rounded-2xl p-6 sm:p-7">
-                  <div className="flex items-center justify-between">
-                    <Quote className="h-8 w-8 text-primary/70" aria-hidden="true" />
-                    <div className="flex gap-0.5 text-primary" aria-label="5 out of 5 stars">
-                      {Array.from({ length: 5 }).map((_, index) => (
-                        <Star key={index} className="h-3.5 w-3.5 fill-current" aria-hidden="true" />
-                      ))}
-                    </div>
-                  </div>
-                  <blockquote className="mt-5 text-base leading-7 text-foreground">
-                    “{testimonial.quote}”
-                  </blockquote>
-                  <footer className="mt-auto flex items-center gap-3 pt-6">
-                    <span className="grid h-10 w-10 place-items-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
-                      {testimonial.initials}
-                    </span>
-                    <div>
-                      <cite className="not-italic text-sm font-semibold text-foreground">{testimonial.name}</cite>
-                      <p className="text-xs text-muted-foreground">{testimonial.role}</p>
-                    </div>
-                  </footer>
-                </article>
-              </div>
-            ))}
-            </div>
-          </div>
-          <div className="mt-6 flex items-center justify-center gap-2" aria-label="Testimonial navigation">
-            {testimonials.map((testimonial, index) => (
-              <button
-                key={testimonial.name}
-                type="button"
-                onClick={() => setActiveIndex(index)}
-                className={`h-2.5 rounded-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${activeIndex === index ? "w-7 bg-primary" : "w-2.5 bg-primary/25 hover:bg-primary/50"}`}
-                aria-label={`Show testimonial ${index + 1}`}
-                aria-current={activeIndex === index}
-              />
-            ))}
-          </div>
         </div>
       </div>
     </section>
@@ -430,6 +330,7 @@ export function PlanCard({
   period,
   tagline,
   features,
+  notIncludedFeatures,
   featured,
   badge,
   ctaText,
@@ -439,6 +340,7 @@ export function PlanCard({
   period?: string;
   tagline: string;
   features: string[];
+  notIncludedFeatures?: string[];
   featured?: boolean;
   badge?: string;
   ctaText?: string;
@@ -470,6 +372,11 @@ export function PlanCard({
         {features.map((f) => (
           <li key={f} className="flex items-start gap-2">
             <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" /> {f}
+          </li>
+        ))}
+        {notIncludedFeatures?.map((f) => (
+          <li key={f} className="flex items-start gap-2 text-muted-foreground opacity-70">
+            <XCircle className="h-4 w-4 shrink-0 mt-0.5" /> {f}
           </li>
         ))}
       </ul>

@@ -1,8 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
 import { SiteLayout } from "@/components/site-layout";
 import { RequestAccessModal } from "@/components/request-access-modal";
-import { DEFAULT_MARKETING_PLANS, fetchMarketingPlans, type MarketingPlan } from "@/config/api";
+import { type MarketingPlan } from "@/config/api";
 import { PlanCard } from "./index";
 
 // Local SectionHeader component for pricing page
@@ -30,15 +29,15 @@ export const Route = createFileRoute("/pricing")({
   head: () => ({
     meta: [
       { title: "Pricing — Dverif | Document Verification Plans & Pricing" },
-      { name: "description", content: "Straightforward document-verification plans for every team. Choose monthly flexibility or yearly savings with transparent pricing for secure document verification." },
+      { name: "description", content: "Straightforward document-verification plans for every team. Choose Monthly flexibility or yearly savings with transparent pricing for secure document verification." },
       { name: "keywords", content: "document verification pricing, verification plans, secure verification costs, document authentication pricing, background check pricing, verification service plans" },
       { property: "og:title", content: "Pricing — Dverif" },
-      { property: "og:description", content: "Choose monthly flexibility or yearly savings with transparent pricing for secure document verification." },
+      { property: "og:description", content: "Choose Monthly flexibility or yearly savings with transparent pricing for secure document verification." },
       { property: "og:url", content: "https://dverif.com/pricing" },
       { property: "og:image", content: "https://dverif.com/assets/og-image.png" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Pricing — Dverif" },
-      { name: "twitter:description", content: "Choose monthly flexibility or yearly savings with transparent pricing for secure document verification." },
+      { name: "twitter:description", content: "Choose Monthly flexibility or yearly savings with transparent pricing for secure document verification." },
       { name: "twitter:image", content: "https://dverif.com/assets/og-image.png" },
     ],
     links: [
@@ -48,27 +47,36 @@ export const Route = createFileRoute("/pricing")({
   component: Page,
 });
 
+const STATIC_PLANS: MarketingPlan[] = [
+  {
+    id: "free",
+    name: "Free",
+    price: "PKR 0",
+    period: "/ Month",
+    description: "Start for free",
+    features: ["1 request in a day"],
+    notIncludedFeatures: ["Payroll Management", "Attendance Management", "Employee Management", "User Management", "Leave Management"],
+  },
+  {
+    id: "monthly",
+    name: "Basic",
+    price: "PKR 20,000",
+    period: "/ Month",
+    description: "Flexible monthly billing",
+    features: ["10 request in a day", "Payroll Management", "Attendance Management", "Employee Management", "User Management", "Leave Management"],
+  },
+  {
+    id: "yearly",
+    name: "Professional",
+    price: "PKR 30,000",
+    period: "/ Month",
+    description: "Best value for growing teams",
+    featured: true,
+    features: ["100 request in a day", "Payroll Management", "Attendance Management", "Employee Management", "User Management", "Leave Management"],
+  },
+];
+
 function Page() {
-  const [plans, setPlans] = useState<MarketingPlan[]>(DEFAULT_MARKETING_PLANS);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    let active = true;
-    fetchMarketingPlans()
-      .then((response) => { if (active) setPlans(response); })
-      .catch((requestError: unknown) => {
-        console.error("Unable to fetch pricing plans:", requestError);
-        if (active) {
-          setError("Unable to fetch the latest pricing. Showing default plans.");
-          return;
-        }
-        if (active) setError(requestError instanceof Error ? requestError.message : "We couldn’t load pricing plans. Please try again shortly.");
-      })
-      .finally(() => { if (active) setLoading(false); });
-    return () => { active = false; };
-  }, []);
-
   return (
     <SiteLayout>
       <section className="enterprise-dark py-20 sm:py-24 lg:py-28">
@@ -83,12 +91,10 @@ function Page() {
 
       <section className="enterprise-light section-y">
         <div className="container-page">
-          <div className="section-frame mx-auto grid max-w-6xl items-stretch gap-6 p-5 sm:p-8 lg:grid-cols-2 lg:gap-8 lg:p-10">
-          {loading && <p className="text-sm text-muted-foreground">Loading plans…</p>}
-          {plans.map((plan) => (
-            <PlanCard key={plan.id} name={plan.name} price={plan.price} period={plan.period} tagline={plan.description} features={plan.features} featured={plan.featured} badge={plan.badge} ctaText={plan.ctaText} />
+          <div className="section-frame mx-auto grid max-w-6xl items-stretch gap-6 p-5 sm:p-8 lg:grid-cols-3 lg:gap-8 lg:p-10">
+          {STATIC_PLANS.map((plan) => (
+            <PlanCard key={plan.id} name={plan.name} price={plan.price} period={plan.period} tagline={plan.description} features={plan.features} notIncludedFeatures={plan.notIncludedFeatures} featured={plan.featured} badge={plan.badge} ctaText={plan.ctaText} />
           ))}
-          {error && <p className="lg:col-span-2 text-center text-sm text-muted-foreground" role="alert">{error}</p>}
           </div>
         </div>
       </section>

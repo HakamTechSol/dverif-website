@@ -66,8 +66,7 @@ function Page() {
             Build for Teams that Verify at Scale
           </h1>
           <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-slate-300">
-            Every capability in Dverif is designed to remove friction between issuers, verifiers and
-            organizations.
+           
           </p>
         </div>
       </section>
@@ -88,7 +87,8 @@ function Page() {
             title="Ready to See it in Action?"
             subtitle={
               <>
-                Request access and our team will set you up with a live walkthrough. <Link to="/pricing" className="text-primary hover:underline">View our pricing plans</Link>.
+                Request access and our team will set you up with a live walkthrough.<br />
+                <Link to="/pricing" className="text-primary hover:underline font-bold">View our pricing plans</Link>.
               </>
             }
           />

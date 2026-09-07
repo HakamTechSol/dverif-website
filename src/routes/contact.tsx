@@ -42,8 +42,8 @@ const contactCards = [
     icon: Mail,
     title: "Email us",
     copy: "For general questions and support.",
-    value: "dverif26@gmail.com",
-    href: "mailto:dverif26@gmail.com",
+    value: "info@dverif.com",
+    href: "mailto:info@dverif.com",
     tint: "bg-[#4F8CFF]/10 text-[#4F8CFF]",
   },
   {

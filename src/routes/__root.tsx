@@ -34,7 +34,7 @@ const jsonLd = {
     "logo": "https://dverif.com/assets/logo-light.png",
     "contactPoint": {
       "@type": "ContactPoint",
-      "email": "dverif26@gmail.com",
+      "email": "info@dverif.com",
       "contactType": "customer support"
     }
   },
@@ -143,7 +143,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:creator", content: "@dverif" },
       { name: "theme-color", content: "#2563EB" },
       { httpEquiv: "X-DNS-Prefetch-Control", content: "on" },
-      { httpEquiv: "X-Frame-Options", content: "SAMEORIGIN" },
       { name: "format-detection", content: "telephone=no" },
     ],
     links: [
@@ -165,25 +164,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
     ],
   }),
-  shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
   errorComponent: ErrorComponent,
 });
 
-function RootShell({ children }: { children: ReactNode }) {
-  return (
-    <html lang="en">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        {children}
-        <Scripts />
-      </body>
-    </html>
-  );
-}
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();

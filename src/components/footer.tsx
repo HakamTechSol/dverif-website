@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import {
-  ArrowRight,
+  ArrowUpRight,
   Check,
   Facebook,
   FileText,
@@ -15,7 +15,6 @@ import { useTheme } from "./theme-provider";
 
 const productLinks = [
   { label: "Features", to: "/features" },
-  { label: "How It Works", to: "/", hash: "how" },
   { label: "Pricing", to: "/pricing" },
   { label: "Contact", to: "/contact" },
 ] as const;
@@ -90,28 +89,28 @@ export function Footer() {
             <Link
               to="/"
               aria-label="Dverif home"
-              className="ml-5 inline-flex transition-opacity hover:opacity-80"
+              className="inline-flex transition-opacity hover:opacity-80"
             >
               <img
                 key={theme}
                 src={logoSrc}
                 alt="Dverif - Secure Document Verification Platform Logo"
-                className="-ml-5 h-16 w-auto object-contain"
+                className="h-16 w-auto object-contain"
                 loading="lazy"
                 decoding="async"
                 width="180"
                 height="64"
               />
             </Link>
-            <p className="mt-5 max-w-sm text-sm leading-6 text-muted-foreground">
+            <p className="mt-5 ml-6 max-w-sm text-sm leading-6 text-muted-foreground">
               Verify documents in minutes. Dverif is an invite-only platform helping organizations
               stop scams and streamline verification.
             </p>
             <a
-              href="mailto:dverif26@gmail.com"
-              className="mt-5 inline-flex items-center gap-2 text-sm text-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              href="mailto:info@dverif.com"
+              className="mt-5 ml-6 inline-flex items-center gap-2 text-sm text-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
-              <Mail className="h-4 w-4 text-primary" /> dverif26@gmail.com
+              <Mail className="h-4 w-4 text-primary" /> info@dverif.com
             </a>
           </section>
 
@@ -169,7 +168,7 @@ export function Footer() {
         <div className="mt-10 flex flex-col items-center gap-4 border-t border-primary/15 pt-6 text-center text-xs text-muted-foreground sm:text-sm lg:flex-row lg:justify-between lg:text-left">
           <p>© 2026 Dverif. All rights reserved.</p>
           <nav className="flex flex-wrap justify-center gap-x-5 gap-y-2" aria-label="Legal links">
-            <p>Design and Developed by Hakam TechSol</p>
+            <p>Designed & Developed by <a href="https://hakamtechsol.com/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">HakamTechSol</a></p>
           </nav>
         </div>
       </div>
@@ -187,12 +186,12 @@ export function ReadyToSimplify() {
           <div className="relative max-w-2xl">
             <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">Ready to simplify document verification?</h2>
             <p className="mt-3 text-sm leading-6 text-slate-200/85 sm:text-base">
-              Join forward-thinking organizations that trust Dverif to verify documents faster and build more trust.
+              Join forward-thinking organizations that trust Dverif to verify documents faster and build trust.
             </p>
           </div>
           <RequestAccessModal>
             <button type="button" className="relative mt-6 inline-flex h-11 w-full shrink-0 items-center justify-center gap-2 rounded-xl bg-[#4f8cff] px-5 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 hover:bg-[#3d7ce8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#24548d] lg:mt-0 lg:w-auto">
-              Request Access <ArrowRight className="h-4 w-4" />
+              Schedule A Meeting <ArrowUpRight className="h-4 w-4" />
             </button>
           </RequestAccessModal>
         </div>

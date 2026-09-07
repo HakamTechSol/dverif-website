@@ -1,5 +1,5 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 import { useState } from "react";
 import { useTheme } from "./theme-provider";
 import { RequestAccessModal } from "./request-access-modal";
@@ -20,8 +20,8 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4">
-      <div className="glass-nav mx-auto max-w-[1280px] rounded-[18px] border border-border/80 shadow-[0_14px_36px_-22px_color-mix(in_oklab,var(--foreground)_38%,transparent)]">
-        <div className="flex min-h-16 items-center justify-between gap-3 px-4 py-2 sm:px-5 lg:px-6">
+      <div className="mx-auto max-w-[1280px] rounded-[18px] border border-border bg-blue-50 dark:bg-blue-950/40 shadow-[0_14px_36px_-22px_color-mix(in_oklab,var(--foreground)_38%,transparent)]">
+        <div className="flex h-16 items-center justify-between gap-2 px-4 sm:px-5 lg:px-6">
           <Link
             to="/"
             aria-label="Dverif home"
@@ -59,7 +59,7 @@ export function Navbar() {
             <div className="hidden md:block">
               <RequestAccessModal>
                 <Button className="h-10 rounded-xl px-4 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:scale-[1.02] hover:brightness-95">
-                  Schedule A Meeting
+                  Schedule A Meeting <ArrowUpRight className="h-4 w-4" />
                 </Button>
               </RequestAccessModal>
             </div>
@@ -76,7 +76,7 @@ export function Navbar() {
         </div>
 
         {open && (
-          <div className="space-y-1 border-t border-border/80 bg-background/85 px-4 py-3 backdrop-blur-xl md:hidden">
+          <div className="space-y-1 bg-background/85 px-4 py-3 backdrop-blur-xl md:hidden">
             {links.map((l) => (
               <Link
                 key={l.to}
@@ -92,7 +92,7 @@ export function Navbar() {
             <div className="pt-2 pb-1">
               <RequestAccessModal>
                 <Button className="h-10 w-full rounded-xl transition-all duration-300 hover:brightness-95">
-                  Schedule A Meeting
+                  Schedule A Meeting <ArrowUpRight className="h-4 w-4" />
                 </Button>
               </RequestAccessModal>
             </div>
