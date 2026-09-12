@@ -59,7 +59,7 @@ export function Navbar() {
             <div className="hidden md:block">
               <RequestAccessModal>
                 <Button className="h-10 rounded-xl px-4 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:scale-[1.02] hover:brightness-95">
-                  Schedule A Meeting <ArrowUpRight className="h-4 w-4" />
+                  Request A Meeting
                 </Button>
               </RequestAccessModal>
             </div>
@@ -92,7 +92,7 @@ export function Navbar() {
             <div className="pt-2 pb-1">
               <RequestAccessModal>
                 <Button className="h-10 w-full rounded-xl transition-all duration-300 hover:brightness-95">
-                  Schedule A Meeting <ArrowUpRight className="h-4 w-4" />
+                  Request A Meeting
                 </Button>
               </RequestAccessModal>
             </div>

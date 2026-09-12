@@ -361,7 +361,7 @@ export function PlanCard({
           )}
         </div>
       )}
-      <div className="text-sm font-semibold text-muted-foreground">{name}</div>
+      <div className="text-sm font-bold text-black">{name}</div>
       <div className="mt-2 flex flex-wrap items-baseline gap-x-2">
         <span className="text-4xl font-bold">{price}</span>
         {period && <span className="text-sm text-muted-foreground">{period}</span>}
@@ -371,7 +371,7 @@ export function PlanCard({
       <ul className="space-y-3 text-sm">
         {features.map((f) => (
           <li key={f} className="flex items-start gap-2">
-            <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" /> {f}
+            <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" /> <span className="font-semibold">{f}</span>
           </li>
         ))}
         {notIncludedFeatures?.map((f) => (

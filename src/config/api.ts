@@ -93,7 +93,7 @@ export const DEFAULT_MARKETING_PLANS: MarketingPlan[] = [
     price: "PKR 0",
     period: "/ Month",
     description: "Start for free",
-    features: ["1 request in a day"],
+    features: ["1 request per day"],
     notIncludedFeatures: ["Payroll Management", "Attendance Management", "Employee Management", "User Management", "Leave Management"],
   },
   {
@@ -102,7 +102,7 @@ export const DEFAULT_MARKETING_PLANS: MarketingPlan[] = [
     price: "PKR 20,000",
     period: "/ Month",
     description: "Flexible monthly billing",
-    features: ["10 request in a day", "Payroll Management", "Attendance Management", "Employee Management", "User Management", "Leave Management"],
+    features: ["10 request per day", "Payroll Management", "Attendance Management", "Employee Management", "User Management", "Leave Management"],
   },
   {
     id: "yearly",
@@ -111,7 +111,7 @@ export const DEFAULT_MARKETING_PLANS: MarketingPlan[] = [
     period: "/ Month",
     description: "Best value for growing teams",
     featured: true,
-    features: ["100 request in a day", "Payroll Management", "Attendance Management", "Employee Management", "User Management", "Leave Management"],
+    features: ["100 request per day", "Payroll Management", "Attendance Management", "Employee Management", "User Management", "Leave Management"],
   },
 ];
 

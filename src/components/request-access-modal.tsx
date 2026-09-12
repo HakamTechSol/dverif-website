@@ -27,7 +27,7 @@ const benefits = ["Secure & Private", "Fast Onboarding", "Built for Teams"];
 export function RequestAccessModal({
   children,
   variant = "primary",
-  triggerLabel = "Schedule A Meeting",
+  triggerLabel = "Request A Meeting",
 }: {
   children?: ReactNode;
   variant?: "primary" | "outline";
@@ -136,7 +136,7 @@ export function RequestAccessModal({
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/75">
                   Dverif access
                 </p>
-                <h2 className="mt-3 text-3xl font-bold tracking-tight">Schedule A Meeting</h2>
+                <h2 className="mt-3 text-3xl font-bold tracking-tight">Request A Meeting</h2>
                 <p className="mt-3 max-w-xs text-sm leading-6 text-white/80">
                   Join teams that make document verification clearer, safer, and easier to manage.
                 </p>
@@ -210,7 +210,7 @@ export function RequestAccessModal({
                   </p>
                 )}
                 <Button type="submit" loading={loading} className="mt-2 w-full">
-                  {loading ? "Sending request…" : "Schedule A Meeting"}
+                  {loading ? "Sending request…" : "Request A Meeting"}
                 </Button>
               </form>
             </section>

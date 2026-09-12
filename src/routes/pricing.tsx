@@ -53,8 +53,8 @@ const STATIC_PLANS: MarketingPlan[] = [
     name: "Free",
     price: "PKR 0",
     period: "/ Month",
-    description: "Start for free",
-    features: ["1 request in a day"],
+    description: "Start for Free",
+    features: ["1 request per day"],
     notIncludedFeatures: ["Payroll Management", "Attendance Management", "Employee Management", "User Management", "Leave Management"],
   },
   {
@@ -62,17 +62,18 @@ const STATIC_PLANS: MarketingPlan[] = [
     name: "Basic",
     price: "PKR 20,000",
     period: "/ Month",
-    description: "Flexible monthly billing",
-    features: ["10 request in a day", "Payroll Management", "Attendance Management", "Employee Management", "User Management", "Leave Management"],
+    description: "Flexible Monthly Billing",
+    features: ["10 request per day",  "Attendance Management", "Employee Management", "User Management", "Leave Management"],
+    notIncludedFeatures:["Payroll Management"],
   },
   {
     id: "yearly",
     name: "Professional",
     price: "PKR 30,000",
     period: "/ Month",
-    description: "Best value for growing teams",
+    description: "Best Value for Growing Teams",
     featured: true,
-    features: ["100 request in a day", "Payroll Management", "Attendance Management", "Employee Management", "User Management", "Leave Management"],
+    features: ["100 request per day", "Payroll Management", "Attendance Management", "Employee Management", "User Management", "Leave Management"],
   },
 ];
 

@@ -34,7 +34,7 @@ const jsonLd = {
     "logo": "https://dverif.com/assets/logo-light.png",
     "contactPoint": {
       "@type": "ContactPoint",
-      "email": "info@dverif.com",
+      "email": "contact@dverif.com",
       "contactType": "customer support"
     }
   },

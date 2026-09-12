@@ -7,6 +7,7 @@ import {
   Instagram,
   Linkedin,
   Mail,
+  Phone,
   ShieldCheck,
   Youtube,
 } from "lucide-react";
@@ -106,13 +107,23 @@ export function Footer() {
               Verify documents in minutes. Dverif is an invite-only platform helping organizations
               stop scams and streamline verification.
             </p>
-            <a
-              href="mailto:info@dverif.com"
-              className="mt-5 ml-6 inline-flex items-center gap-2 text-sm text-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-            >
-              <Mail className="h-4 w-4 text-primary" /> info@dverif.com
-            </a>
+            <div className="mt-5 ml-6 flex flex-col gap-2">
+              <a
+                href="mailto:contact@dverif.com"
+                className="inline-flex items-center gap-2 text-sm text-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              >
+                <Mail className="h-4 w-4 text-primary" /> contact@dverif.com
+              </a>
+              <a
+                href="tel:+923199421413"
+                className="inline-flex items-center gap-2 text-sm text-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              >
+                <Phone className="h-4 w-4 text-primary" /> +92 319 9421413
+              </a>
+            </div>
+           
           </section>
+          
 
           <nav className="xl:col-span-2" aria-label="Product links">
             <h2 className="text-sm font-semibold text-foreground">Product</h2>
@@ -191,7 +202,7 @@ export function ReadyToSimplify() {
           </div>
           <RequestAccessModal>
             <button type="button" className="relative mt-6 inline-flex h-11 w-full shrink-0 items-center justify-center gap-2 rounded-xl bg-[#4f8cff] px-5 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 hover:bg-[#3d7ce8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#24548d] lg:mt-0 lg:w-auto">
-              Schedule A Meeting <ArrowUpRight className="h-4 w-4" />
+              Request A Meeting <ArrowUpRight className="h-4 w-4" />
             </button>
           </RequestAccessModal>
         </div>

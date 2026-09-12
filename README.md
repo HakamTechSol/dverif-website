@@ -56,7 +56,7 @@ Update the existing Dverif marketing website UI to a modern SaaS-level design wi
 - Contact page:
   - Form (Name, Email, Company, Phone, Message)
   - WhatsApp button
-  - Email: info@dverif.com
+  - Email:contact@dverif.com
   - Note: “Dverif is invite-only…”
 
 🚫 IMPORTANT:
