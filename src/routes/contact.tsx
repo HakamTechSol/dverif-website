@@ -67,20 +67,79 @@ function Page() {
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [emailError, setEmailError] = useState<string | null>(null);
+  const [phoneError, setPhoneError] = useState<string | null>(null);
+
+  const validateEmail = (email: string) => {
+    if (!email) {
+      setEmailError(null);
+      return false;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setEmailError("Invalid email");
+      return false;
+    }
+    setEmailError(null);
+    return true;
+  };
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log("Email changed:", e.target.value);
+    validateEmail(e.target.value);
+  };
+
+  const validatePhone = (phone: string) => {
+    if (!phone) {
+      setPhoneError(null);
+      return false;
+    }
+    const phoneClean = phone.replace(/[\s\-\(\)\+]/g, "");
+    const phoneRegex = /^[0-9]{10,15}$/;
+    if (!phoneRegex.test(phoneClean)) {
+      setPhoneError("Invalid phone number");
+      return false;
+    }
+    setPhoneError(null);
+    return true;
+  };
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    validatePhone(e.target.value);
+  };
 
   const submit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.currentTarget;
     const data = new FormData(form);
+    
+    const name = String(data.get("name") || "").trim();
+    const email = String(data.get("email") || "").trim();
+    const phone = String(data.get("phone") || "").trim();
+    const subject = String(data.get("subject") || "").trim();
+    const message = String(data.get("message") || "").trim();
+
+    // Check validation errors
+    if (emailError || phoneError) {
+      setError("Please fix the errors before submitting.");
+      return;
+    }
+
+    // Final validation before submit
+    if (!validateEmail(email) || !validatePhone(phone)) {
+      setError("Please fix the errors before submitting.");
+      return;
+    }
+
     setError(null);
     setLoading(true);
     try {
       await submitContactForm({
-        name: String(data.get("name") || "").trim(),
-        email: String(data.get("email") || "").trim(),
-        phone: String(data.get("phone") || "").trim(),
-        subject: String(data.get("subject") || "").trim(),
-        message: String(data.get("message") || "").trim(),
+        name,
+        email,
+        phone,
+        subject,
+        message,
       });
       form.reset();
       setDone(true);
@@ -157,10 +216,12 @@ function Page() {
                         name="email"
                         label="Email"
                         icon={Mail}
-                        type="email"
+                        type="text"
                         required
                         placeholder="jane@company.com"
                         autoComplete="email"
+                        error={emailError}
+                        onChange={handleEmailChange}
                       />
                     </div>
                     <div className="grid gap-5 sm:grid-cols-2">
@@ -173,6 +234,8 @@ function Page() {
                         required
                         placeholder="+1 (555) 000-0000"
                         autoComplete="tel"
+                        error={phoneError}
+                        onChange={handlePhoneChange}
                       />
                       <InputField
                         id="contact-subject"

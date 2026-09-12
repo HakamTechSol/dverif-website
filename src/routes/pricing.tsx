@@ -55,7 +55,7 @@ const STATIC_PLANS: MarketingPlan[] = [
     period: "/ Month",
     description: "Start for Free",
     features: ["1 request per day"],
-    notIncludedFeatures: ["Payroll Management", "Attendance Management", "Employee Management", "User Management", "Leave Management"],
+    notIncludedFeatures: [ "Attendance Management", "Employee Management", "User Management", "Leave Management" , "Payroll Management"],
   },
   {
     id: "monthly",
@@ -73,7 +73,7 @@ const STATIC_PLANS: MarketingPlan[] = [
     period: "/ Month",
     description: "Best Value for Growing Teams",
     featured: true,
-    features: ["100 request per day", "Payroll Management", "Attendance Management", "Employee Management", "User Management", "Leave Management"],
+    features: ["100 request per day" , "Attendance Management", "Employee Management", "User Management", "Leave Management" , "Payroll Management"],
   },
 ];
 

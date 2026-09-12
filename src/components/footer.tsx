@@ -8,6 +8,7 @@ import {
   Linkedin,
   Mail,
   Phone,
+  MapPin,
   ShieldCheck,
   Youtube,
 } from "lucide-react";
@@ -22,7 +23,7 @@ const productLinks = [
 
 const companyLinks = [
   { label: "Privacy Policy", to: "/privacy-policy" },
-  { label: "Terms & Conditions", to: "/terms" },
+  { label: "Terms & Conditions", to: "/terms-and-conditions" },
   { label: "FAQ", to: "/faq" },
 ] as const;
 
@@ -120,6 +121,10 @@ export function Footer() {
               >
                 <Phone className="h-4 w-4 text-primary" /> +92 319 9421413
               </a>
+              <div className="flex items-start gap-2 text-sm text-foreground">
+                <MapPin className="h-4 w-4 text-primary mt-0.5 shrink-0" />
+                <span className="text-muted-foreground">Kolachi IT Park, Gulshan E Jamal, Rashid Minhas Road, Karachi, Sindh, Pakistan</span>
+              </div>
             </div>
            
           </section>
