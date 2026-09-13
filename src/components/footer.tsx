@@ -29,8 +29,8 @@ const companyLinks = [
 
 const socialIcons = [
   { label: "LinkedIn", icon: Linkedin, href: "https://www.linkedin.com/company/dverif", tone: "border-[#0a66c2] bg-[#0a66c2] text-white hover:bg-[#004182]" },
-  { label: "Instagram", icon: Instagram, href: "https://www.instagram.com/dverif", tone: "border-transparent bg-[linear-gradient(135deg,#f9ce34,#ee2a7b_48%,#6228d7)] text-white hover:brightness-95" },
-  { label: "Facebook", icon: Facebook, href: "https://www.facebook.com/dverif", tone: "border-[#1877f2] bg-[#1877f2] text-white hover:bg-[#0c63d4]" },
+  { label: "Instagram", icon: Instagram, href: "https://www.instagram.com/d.verif/", tone: "border-transparent bg-[linear-gradient(135deg,#f9ce34,#ee2a7b_48%,#6228d7)] text-white hover:brightness-95" },
+  { label: "Facebook", icon: Facebook, href: "https://www.facebook.com/profile.php?id=61594065642255", tone: "border-[#1877f2] bg-[#1877f2] text-white hover:bg-[#0c63d4]" },
 ] as const;
 
 
@@ -184,7 +184,7 @@ export function Footer() {
         <div className="mt-10 flex flex-col items-center gap-4 border-t border-primary/15 pt-6 text-center text-xs text-muted-foreground sm:text-sm lg:flex-row lg:justify-between lg:text-left">
           <p>© 2026 Dverif. All rights reserved.</p>
           <nav className="flex flex-wrap justify-center gap-x-5 gap-y-2" aria-label="Legal links">
-            <p>Designed & Developed by <a href="https://hakamtechsol.com/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">HakamTechSol</a></p>
+            <p>Powered by <a href="https://hakamtechsol.com/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">HakamTechSol</a></p>
           </nav>
         </div>
       </div>
