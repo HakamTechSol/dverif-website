@@ -57,7 +57,7 @@ export function ProductJourney() {
             {journeys.map(({ text, description, image }, index) => (
               <div
                 key={text}
-                className={`group relative overflow-hidden cursor-pointer rounded-xl transition-all duration-500 ease-out flex flex-col ${
+                className={`group relative flex h-60 flex-col cursor-pointer overflow-hidden rounded-xl transition-all duration-500 ease-out sm:h-72 lg:h-auto ${
                   hoveredIndex === index ? 'lg:flex-[3]' : 'lg:flex-[1]'
                 }`}
                 onMouseEnter={() => setHoveredIndex(index)}
@@ -67,7 +67,7 @@ export function ProductJourney() {
                   <img
                     src={image}
                     alt={text}
-                    className="h-full w-full object-contain object-center transition-transform duration-700 ease-out lg:group-hover:scale-105"
+                    className="h-full w-full object-cover object-center transition-transform duration-700 ease-out lg:object-contain lg:group-hover:scale-105"
                   />
                 </div>
 

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight, Play } from "lucide-react";
+import { Play } from "lucide-react";
 
 const videoTestimonials = [
   {
@@ -87,16 +87,6 @@ export function VideoTestimonials() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const handleNavigation = (direction: "next" | "prev") => {
-    setActiveIndex((prev) => {
-      if (direction === "next") {
-        return (prev + 1) % totalSlides;
-      } else {
-        return (prev - 1 + totalSlides) % totalSlides;
-      }
-    });
-  };
-
   const handlePlay = (videoUrl: string) => {
     setCurrentVideo(videoUrl);
     setIsPlaying(true);
@@ -118,33 +108,15 @@ export function VideoTestimonials() {
     <section className="enterprise-light py-12 lg:py-16">
       <div className="container-page">
         <div className="section-frame px-5 py-10 sm:px-8 lg:px-12 lg:py-14">
-          {/* Header with navigation buttons */}
-          <div className="flex items-center justify-between mb-8">
-            <div className="max-w-2xl">
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                Trusted By Leaders,
-                <br />
-                <span className="bg-gradient-to-r from-primary to-[color:var(--primary-glow)] bg-clip-text text-transparent">
-                  Proven By Results
-                </span>
-              </h2>
-            </div>
-            <div className="flex gap-2">
-              <button
-                onClick={() => handleNavigation("prev")}
-                className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-card hover:bg-primary hover:text-primary-foreground transition-colors"
-                aria-label="Previous video"
-              >
-                <ChevronLeft className="h-5 w-5" />
-              </button>
-              <button
-                onClick={() => handleNavigation("next")}
-                className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-card hover:bg-primary hover:text-primary-foreground transition-colors"
-                aria-label="Next video"
-              >
-                <ChevronRight className="h-5 w-5" />
-              </button>
-            </div>
+          {/* Header */}
+          <div className="mb-8 text-center">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+              Trusted By Leaders,
+              <br />
+              <span className="bg-gradient-to-r from-primary to-[color:var(--primary-glow)] bg-clip-text text-transparent">
+                Proven By Results
+              </span>
+            </h2>
           </div>
 
           {/* Video cards carousel */}

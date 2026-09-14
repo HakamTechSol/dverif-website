@@ -171,7 +171,7 @@ function Page() {
             </p>
           </header>
 
-          <div className="mt-12 grid gap-6 lg:grid-cols-[1.16fr_.84fr] lg:gap-8 lg:items-start">
+          <div className="mt-12 grid gap-6 lg:grid-cols-[1.16fr_.84fr] lg:gap-8 lg:items-stretch">
             <section className="surface-card relative overflow-hidden rounded-2xl p-6 sm:p-9">
               <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary via-primary-glow to-primary" />
               {done ? (
@@ -270,7 +270,7 @@ function Page() {
                 </>
               )}
             </section>
-            <aside className="section-frame space-y-4 p-4 sm:p-5">
+            <aside className="section-frame flex flex-col space-y-4 p-4 sm:p-5">
               {contactCards.map(({ icon: Icon, title, copy, value, href, tint }) => {
                 const content = (
                   <>
@@ -303,7 +303,7 @@ function Page() {
                   </div>
                 );
               })}
-              <div className="relative overflow-hidden rounded-2xl border border-[#4F8CFF]/20 bg-[linear-gradient(135deg,rgba(79,140,255,.12),rgba(108,99,255,.11))] p-6 sm:p-7">
+              <div className="relative flex flex-1 flex-col justify-center overflow-hidden rounded-2xl border border-[#4F8CFF]/20 bg-[linear-gradient(135deg,rgba(79,140,255,.12),rgba(108,99,255,.11))] p-6 sm:p-7">
                 <div className="absolute -right-5 -top-6 h-20 w-20 rounded-full bg-white/35 blur-xl" />
                 <h3 className="relative text-lg font-bold">We’re here to help</h3>
                 <p className="relative mt-2 text-sm leading-6 text-muted-foreground">

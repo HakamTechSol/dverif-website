@@ -68,7 +68,9 @@ export function Navbar() {
               size="icon"
               className="h-10 w-10 rounded-xl border border-border bg-card/80 transition-all duration-300 hover:bg-accent md:hidden"
               onClick={() => setOpen((v) => !v)}
-              aria-label="Menu"
+              aria-label={open ? "Close menu" : "Open menu"}
+              aria-expanded={open}
+              aria-controls="mobile-nav"
             >
               {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </Button>
@@ -76,7 +78,10 @@ export function Navbar() {
         </div>
 
         {open && (
-          <div className="space-y-1 bg-background/85 px-4 py-3 backdrop-blur-xl md:hidden">
+          <div
+            id="mobile-nav"
+            className="space-y-1 rounded-b-[18px] border-t border-border/60 bg-background/95 px-4 pb-3 pt-3 backdrop-blur-xl md:hidden"
+          >
             {links.map((l) => (
               <Link
                 key={l.to}
@@ -89,7 +94,7 @@ export function Navbar() {
                 {l.label}
               </Link>
             ))}
-            <div className="pt-2 pb-1">
+            <div className="border-t border-border/60 pt-3">
               <RequestAccessModal>
                 <Button className="h-10 w-full rounded-xl transition-all duration-300 hover:brightness-95">
                   Request A Meeting

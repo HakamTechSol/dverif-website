@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { SiteLayout } from "@/components/site-layout";
 import { RequestAccessModal } from "@/components/request-access-modal";
-import { type MarketingPlan } from "@/config/api";
+import { fetchMarketingPlans, type MarketingPlan } from "@/config/api";
 import { PlanCard } from "./index";
 
 // Local SectionHeader component for pricing page
@@ -78,6 +79,29 @@ const STATIC_PLANS: MarketingPlan[] = [
 ];
 
 function Page() {
+  const [plans, setPlans] = useState<MarketingPlan[] | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetchMarketingPlans()
+      .then((data) => {
+        if (!cancelled) setPlans(data);
+      })
+      .catch((plansError) => {
+        if (!cancelled)
+          setError(
+            plansError instanceof Error ? plansError.message : "Couldn’t load plans.",
+          );
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const isLoading = plans === null && error === null;
+  const displayPlans = plans ?? STATIC_PLANS;
+
   return (
     <SiteLayout>
       <section className="enterprise-dark py-20 sm:py-24 lg:py-28">
@@ -92,10 +116,16 @@ function Page() {
 
       <section className="enterprise-light section-y">
         <div className="container-page">
-          <div className="section-frame mx-auto grid max-w-6xl items-stretch gap-6 p-5 sm:p-8 lg:grid-cols-3 lg:gap-8 lg:p-10">
-          {STATIC_PLANS.map((plan) => (
-            <PlanCard key={plan.id} name={plan.name} price={plan.price} period={plan.period} tagline={plan.description} features={plan.features} notIncludedFeatures={plan.notIncludedFeatures} featured={plan.featured} badge={plan.badge} ctaText={plan.ctaText} />
-          ))}
+          <div className={`section-frame mx-auto grid max-w-6xl items-stretch gap-6 p-5 sm:p-8 lg:gap-8 lg:p-10 ${displayPlans.length === 2 ? "lg:max-w-4xl lg:grid-cols-2" : "lg:grid-cols-3"}`}>
+            {isLoading ? (
+              <p className="col-span-full py-16 text-center text-muted-foreground">
+                Loading plans…
+              </p>
+            ) : (
+              displayPlans.map((plan) => (
+                <PlanCard key={plan.id} name={plan.name} price={plan.price} period={plan.period} tagline={plan.description} features={plan.features} notIncludedFeatures={plan.notIncludedFeatures} featured={plan.featured} badge={plan.badge} ctaText={plan.ctaText} />
+              ))
+            )}
           </div>
         </div>
       </section>

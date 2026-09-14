@@ -40,7 +40,7 @@ function FooterLink({ label, to, hash }: { label: string; to: string; hash?: str
     <Link
       to={to}
       hash={hash}
-      className="footer-link text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[#edf6ff]"
+      className="footer-link text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f203d]"
     >
       {label}
     </Link>
@@ -85,54 +85,60 @@ export function Footer() {
 
   return (
     <footer className="site-footer overflow-hidden">
-      <div className="mx-auto max-w-7xl px-4 pb-7 pt-14 sm:px-6 sm:pt-16 lg:px-8 lg:pt-20">
-        <div className="grid gap-x-8 gap-y-11 md:grid-cols-2 xl:grid-cols-12 xl:gap-y-8">
-          <section className="xl:col-span-4">
-            <Link
-              to="/"
-              aria-label="Dverif home"
-              className="inline-flex transition-opacity hover:opacity-80"
-            >
-              <img
-                key={theme}
-                src={logoSrc}
-                alt="Dverif - Secure Document Verification Platform Logo"
-                className="h-16 w-auto object-contain"
-                loading="lazy"
-                decoding="async"
-                width="180"
-                height="64"
-              />
-            </Link>
-            <p className="mt-5 ml-6 max-w-sm text-sm leading-6 text-muted-foreground">
-              Verify documents in minutes. Dverif is an invite-only platform helping organizations
-              stop scams and streamline verification.
-            </p>
-            <div className="mt-5 ml-6 flex flex-col gap-2">
-              <a
-                href="mailto:contact@dverif.com"
-                className="inline-flex items-center gap-2 text-sm text-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-              >
-                <Mail className="h-4 w-4 text-primary" /> contact@dverif.com
-              </a>
-              <a
-                href="tel:+923199421413"
-                className="inline-flex items-center gap-2 text-sm text-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-              >
-                <Phone className="h-4 w-4 text-primary" /> +92 319 9421413
-              </a>
-              <div className="flex items-start gap-2 text-sm text-foreground">
-                <MapPin className="h-4 w-4 text-primary mt-0.5 shrink-0" />
-                <span className="text-muted-foreground">Kolachi IT Park, Gulshan E Jamal, Rashid Minhas Road, Karachi, Sindh, Pakistan</span>
+      <div className="mx-auto max-w-7xl px-4 pb-8 pt-14 sm:px-6 sm:pb-10 sm:pt-16 lg:px-8 lg:pb-12 lg:pt-20">
+        <div className="grid grid-cols-2 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-12 lg:gap-y-0">
+          <section className="col-span-2 lg:col-span-5 lg:pr-8 xl:pr-12">
+            <div className="flex h-full flex-col">
+              <div className="-ml-7 overflow-hidden">
+                <Link
+                  to="/"
+                  aria-label="Dverif home"
+                  className="inline-flex w-fit transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f203d]"
+                >
+                  <img
+                    key={theme}
+                    src={logoSrc}
+                    alt="Dverif - Secure Document Verification Platform Logo"
+                    className="h-20 w-auto object-contain"
+                    loading="lazy"
+                    decoding="async"
+                    width="200"
+                    height="80"
+                  />
+                </Link>
+              </div>
+              <p className="mt-6 max-w-sm text-sm leading-6 text-muted-foreground">
+                Verify documents in minutes. Dverif is an invite-only platform helping organizations
+                stop scams and streamline verification.
+              </p>
+              <div className="mt-6 flex max-w-sm flex-col gap-3">
+                <a
+                  href="mailto:contact@dverif.com"
+                  className="inline-flex items-center gap-3 text-sm text-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f203d]"
+                >
+                  <Mail className="h-4 w-4 shrink-0 text-primary" />
+                  <span className="break-all">contact@dverif.com</span>
+                </a>
+                <a
+                  href="tel:+923199421413"
+                  className="inline-flex items-center gap-3 text-sm text-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f203d]"
+                >
+                  <Phone className="h-4 w-4 shrink-0 text-primary" />
+                  <span>+92 319 9421413</span>
+                </a>
+                <div className="flex items-start gap-3 text-sm text-foreground">
+                  <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                  <span className="text-muted-foreground">
+                    Kolachi IT Park, Gulshan E Jamal, Rashid Minhas Road, Karachi, Sindh, Pakistan
+                  </span>
+                </div>
               </div>
             </div>
-           
           </section>
-          
 
-          <nav className="xl:col-span-2" aria-label="Product links">
+          <nav className="col-span-1 lg:col-span-2 lg:pt-1" aria-label="Product links">
             <h2 className="text-sm font-semibold text-foreground">Product</h2>
-            <ul className="mt-4 space-y-1">
+            <ul className="mt-5 space-y-3">
               {productLinks.map((link) => (
                 <li key={link.label}>
                   <FooterLink {...link} />
@@ -141,9 +147,9 @@ export function Footer() {
             </ul>
           </nav>
 
-          <nav className="xl:col-span-2" aria-label="Company links">
+          <nav className="col-span-1 lg:col-span-2 lg:pt-1" aria-label="Company links">
             <h2 className="text-sm font-semibold text-foreground">Company</h2>
-            <ul className="mt-4 space-y-1">
+            <ul className="mt-5 space-y-3">
               {companyLinks.map((link) => (
                 <li key={link.label}>
                   <FooterLink {...link} />
@@ -152,19 +158,14 @@ export function Footer() {
             </ul>
           </nav>
 
-          <section className="md:col-span-2 xl:col-span-4 xl:-mt-4">
+          <div className="col-span-2 lg:col-span-3 lg:self-end lg:pb-1">
             <SecurityIllustration />
-          </section>
+          </div>
         </div>
 
-        <section
-          className="mt-11 flex flex-col items-center text-center"
-          aria-label="Dverif social channels"
-        >
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-            Follow Us
-          </p>
-          <div className="mt-3 flex max-w-sm flex-wrap justify-center gap-2">
+        <div className="mt-12 border-t border-white/10 pt-6 text-xs text-muted-foreground sm:mt-14 lg:mt-16 lg:grid lg:grid-cols-3 lg:text-sm">
+          <p className="text-center lg:justify-self-start lg:text-left">© 2026 Dverif. All rights reserved.</p>
+          <div className="mt-6 flex items-center justify-center gap-2.5 lg:mt-0">
             {socialIcons.map(({ label, icon: Icon, href, tone }) => (
               <a
                 key={label}
@@ -173,19 +174,23 @@ export function Footer() {
                 rel="noreferrer"
                 title={label}
                 aria-label={`Visit Dverif on ${label}`}
-                className={`grid h-9 w-9 place-items-center rounded-lg border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${tone}`}
+                className={`grid h-9 w-9 place-items-center rounded-lg border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f203d] ${tone}`}
               >
                 <Icon className="h-4 w-4" aria-hidden="true" />
               </a>
             ))}
           </div>
-        </section>
-
-        <div className="mt-10 flex flex-col items-center gap-4 border-t border-primary/15 pt-6 text-center text-xs text-muted-foreground sm:text-sm lg:flex-row lg:justify-between lg:text-left">
-          <p>© 2026 Dverif. All rights reserved.</p>
-          <nav className="flex flex-wrap justify-center gap-x-5 gap-y-2" aria-label="Legal links">
-            <p>Powered by <a href="https://hakamtechsol.com/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">HakamTechSol</a></p>
-          </nav>
+          <p className="mt-6 text-center lg:mt-0 lg:justify-self-end lg:text-right">
+            Powered by{" "}
+            <a
+              href="https://hakamtechsol.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary transition-colors hover:text-white hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f203d]"
+            >
+              HakamTechSol
+            </a>
+          </p>
         </div>
       </div>
     </footer>

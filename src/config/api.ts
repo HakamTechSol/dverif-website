@@ -126,43 +126,69 @@ const textValue = (value: unknown) =>
 function getPlansPayload(payload: unknown): unknown[] {
   if (Array.isArray(payload)) return payload;
   if (!isRecord(payload)) return [];
-  const nested = payload.data ?? payload.plans ?? payload.results;
+  const nested = payload.items ?? payload.data ?? payload.plans ?? payload.results;
   if (Array.isArray(nested)) return nested;
   return isRecord(nested) ? getPlansPayload(nested) : [];
 }
 
 function formatPrice(plan: ApiRecord): string | undefined {
-  const price = textValue(plan.price ?? plan.amount ?? plan.cost);
+  const price = textValue(plan.price ?? plan.monthly_price ?? plan.amount ?? plan.cost);
   if (!price) return undefined;
   if (/[^\d.,]/.test(price)) return price;
-  const currency = textValue(plan.currency ?? plan.currency_code);
-  return currency ? `${currency} ${price}` : price;
+  const currency = textValue(plan.currency ?? plan.currency_code) ?? "PKR";
+  const numeric = Number(price.replace(/,/g, ""));
+  const formatted = Number.isFinite(numeric)
+    ? numeric.toLocaleString("en-US", { maximumFractionDigits: 2 })
+    : price;
+  return `${currency} ${formatted}`;
 }
 
-function getFeatures(value: unknown): string[] {
-  if (!Array.isArray(value)) return [];
-  return value.flatMap((feature) => {
-    const direct = textValue(feature);
-    if (direct) return [direct];
-    if (!isRecord(feature)) return [];
-    const labelled = textValue(feature.name ?? feature.title ?? feature.description ?? feature.text);
-    return labelled ? [labelled] : [];
-  });
+function splitFeatures(value: unknown): { included: string[]; excluded: string[] } {
+  if (!Array.isArray(value)) return { included: [], excluded: [] };
+  const included: string[] = [];
+  const excluded: string[] = [];
+  for (const raw of value) {
+    if (typeof raw === "string" || typeof raw === "number") {
+      included.push(String(raw));
+      continue;
+    }
+    if (!isRecord(raw)) continue;
+    const labelled = textValue(raw.text ?? raw.name ?? raw.title ?? raw.description);
+    if (!labelled) continue;
+    if (raw.highlight === true) included.push(labelled);
+    else if (raw.highlight === false) excluded.push(labelled);
+    else included.push(labelled);
+  }
+  return { included, excluded };
 }
+
+const periodLabels: Record<string, string> = {
+  daily: "/ Day",
+  weekly: "/ Week",
+  monthly: "/ Month",
+  yearly: "/ Year",
+  annually: "/ Year",
+};
 
 function mapMarketingPlan(value: unknown, index: number): MarketingPlan | null {
   if (!isRecord(value)) return null;
   const name = textValue(value.name ?? value.plan_name ?? value.title);
   const price = formatPrice(value);
   const description = textValue(value.description ?? value.tagline ?? value.summary);
-  const features = getFeatures(value.features ?? value.benefits ?? value.inclusions);
-  if (!name || !price || !description || features.length === 0) return null;
+  const { included, excluded } = splitFeatures(value.features ?? value.benefits ?? value.inclusions);
+  if (!name || !price || !description || included.length + excluded.length === 0) return null;
 
   const billingPeriod = textValue(value.billing_period ?? value.billing_cycle ?? value.interval ?? value.period);
   return {
     id: textValue(value.id ?? value.slug ?? value.code) ?? `${name}-${index}`,
-    name, price, description, features,
-    period: billingPeriod ? (billingPeriod.startsWith("/") ? billingPeriod : `/ ${billingPeriod}`) : undefined,
+    name, price, description,
+    features: included,
+    notIncludedFeatures: excluded.length > 0 ? excluded : undefined,
+    period: billingPeriod
+      ? billingPeriod.startsWith("/")
+        ? billingPeriod
+        : periodLabels[billingPeriod.toLowerCase()] ?? `/ ${billingPeriod}`
+      : undefined,
     ctaText: textValue(value.cta_text ?? value.button_text ?? value.cta_label),
     featured: value.featured === true || value.is_featured === true || value.recommended === true,
     badge: textValue(value.badge ?? value.badge_text),
@@ -174,7 +200,7 @@ export async function fetchMarketingPlans(): Promise<MarketingPlan[]> {
   const timeoutId = window.setTimeout(() => controller.abort(), 10_000);
 
   try {
-    const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/marketing/plans`, {
+    const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/marketing/plans`, {
       signal: controller.signal,
     });
     const payload = (await response.json().catch(() => null)) as unknown;
@@ -265,6 +291,12 @@ export async function submitRequestAccess(
     const data = (await response.json().catch(() => ({}))) as ApiResponse;
 
     if (!response.ok) {
+      if (response.status === 429) {
+        throw new Error(
+          "You've reached the limit of 5 requests per hour. Please try again later."
+        );
+      }
+
       throw new Error(
         data.message ||
           "We couldn’t submit your access request. Please try again."
