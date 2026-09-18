@@ -30,20 +30,40 @@ const termsSections = [
 export const Route = createFileRoute("/terms-and-conditions")({
   head: () => ({
     meta: [
-      { title: "Dverif Terms & Conditions" },
-      { name: "description", content: "Review the terms and conditions governing the use of Dverif." },
-      { name: "keywords", content: "terms and conditions, legal terms, service agreement, document verification terms, Dverif terms, usage policy" },
+      { title: "Terms & Conditions — Dverif | Service Agreement" },
+      { name: "description", content: "Review the terms and conditions governing the use of Dverif, the document verification and organization management platform. Clear guidelines for safe and responsible use." },
+      { name: "keywords", content: "terms and conditions, legal terms, service agreement, document verification terms, Dverif terms, usage policy, HR software terms" },
+      { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" },
+      { property: "og:type", content: "website" },
       { property: "og:title", content: "Terms & Conditions — Dverif" },
       { property: "og:description", content: "Review the terms and conditions governing the use of Dverif." },
       { property: "og:url", content: "https://dverif.com/terms-and-conditions" },
-      { property: "og:image", content: "https://dverif.com/assets/og-image.png" },
+      { property: "og:image", content: "https://dverif.com/assets/logo-light.png" },
+      { property: "og:locale", content: "en_US" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Terms & Conditions — Dverif" },
       { name: "twitter:description", content: "Review the terms and conditions governing the use of Dverif." },
-      { name: "twitter:image", content: "https://dverif.com/assets/og-image.png" },
+      { name: "twitter:image", content: "https://dverif.com/assets/logo-light.png" },
     ],
     links: [
       { rel: "canonical", href: "https://dverif.com/terms-and-conditions" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        innerHTML: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Dverif Terms & Conditions",
+          "url": "https://dverif.com/terms-and-conditions",
+          "description": "Terms and conditions governing the use of Dverif, the document verification and organization management platform.",
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": "Dverif",
+            "url": "https://dverif.com"
+          }
+        }),
+      },
     ],
   }),
   component: TermsAndConditionsPage,

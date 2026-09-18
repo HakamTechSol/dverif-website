@@ -29,28 +29,65 @@ import { ProductCapabilities } from "@/components/product-capabilities";
 export const Route = createFileRoute("/features")({
   head: () => ({
     meta: [
-      { title: "Features — Dverif | Document Verification Platform Capabilities" },
+      { title: "Features — Dverif | Document Verification, Employee & HR Management Platform" },
       {
         name: "description",
         content:
-          "Explore Dverif features: dashboard, requests, inbox, and document review for modern document verification. Every tool your team needs to verify documents at the source.",
+          "Explore Dverif features: document verification, employee management, attendance tracking, leave management, user management, payroll management, dashboard, requests, and document review. Every tool your team needs to verify documents and manage your workforce from one place.",
       },
-      { name: "keywords", content: "document verification features, verification dashboard, document requests, inbox management, document review, secure verification tools" },
-      { property: "og:title", content: "Features — Dverif" },
+      { name: "keywords", content: "document verification features, verification dashboard, document requests, inbox management, document review, secure verification tools, employee management features, attendance tracking software, leave management software, payroll software, HR features, HRMS features" },
+      { property: "og:title", content: "Features — Dverif | Document Verification & HR Platform" },
       {
         property: "og:description",
-        content: "Every tool your team needs to verify documents at the source.",
+        content: "Verify documents at the source and manage employees, attendance, leave, and payroll. Every tool your team needs in one platform.",
       },
       { property: "og:url", content: "https://dverif.com/features" },
-      { property: "og:image", content: "https://dverif.com/assets/og-image.png" },
+      { property: "og:image", content: "https://dverif.com/assets/logo-light.png" },
       { property: "og:type", content: "website" },
+      { property: "og:locale", content: "en_US" },
+      { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Features — Dverif" },
-      { name: "twitter:description", content: "Every tool your team needs to verify documents at the source." },
-      { name: "twitter:image", content: "https://dverif.com/assets/og-image.png" },
+      { name: "twitter:title", content: "Features — Dverif | Document Verification & HR Platform" },
+      { name: "twitter:description", content: "Verify documents at the source and manage employees, attendance, leave, and payroll. Every tool your team needs in one platform." },
+      { name: "twitter:image", content: "https://dverif.com/assets/logo-light.png" },
     ],
     links: [
       { rel: "canonical", href: "https://dverif.com/features" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        innerHTML: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "AboutPage",
+          "name": "Dverif Features",
+          "url": "https://dverif.com/features",
+          "description": "Dverif features include document verification, employee management, attendance tracking, leave management, user management, payroll management, dashboard and analytics.",
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": "Dverif",
+            "url": "https://dverif.com"
+          },
+          "about": {
+            "@type": "SoftwareApplication",
+            "name": "Dverif",
+            "applicationCategory": "BusinessApplication"
+          },
+          "mainEntity": {
+            "@type": "ItemList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Document Verification" },
+              { "@type": "ListItem", "position": 2, "name": "Employee Management" },
+              { "@type": "ListItem", "position": 3, "name": "Attendance Management" },
+              { "@type": "ListItem", "position": 4, "name": "Leave Management" },
+              { "@type": "ListItem", "position": 5, "name": "User Management" },
+              { "@type": "ListItem", "position": 6, "name": "Payroll Management" },
+              { "@type": "ListItem", "position": 7, "name": "Dashboard and Analytics" },
+              { "@type": "ListItem", "position": 8, "name": "Document Review" }
+            ]
+          }
+        }),
+      },
     ],
   }),
   component: Page,

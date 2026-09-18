@@ -108,8 +108,9 @@ export function Footer() {
                 </Link>
               </div>
               <p className="mt-6 max-w-sm text-sm leading-6 text-muted-foreground">
-                Verify documents in minutes. Dverif is an invite-only platform helping organizations
-                stop scams and streamline verification.
+                Verify documents in minutes. Dverif is a secure document verification and
+                organization management platform — employee management, attendance, leave, and
+                payroll from one place.
               </p>
               <div className="mt-6 flex max-w-sm flex-col gap-3">
                 <a

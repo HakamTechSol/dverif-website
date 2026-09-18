@@ -29,20 +29,76 @@ function PricingSectionHeader({
 export const Route = createFileRoute("/pricing")({
   head: () => ({
     meta: [
-      { title: "Pricing — Dverif | Document Verification Plans & Pricing" },
-      { name: "description", content: "Straightforward document-verification plans for every team. Choose Monthly flexibility or yearly savings with transparent pricing for secure document verification." },
-      { name: "keywords", content: "document verification pricing, verification plans, secure verification costs, document authentication pricing, background check pricing, verification service plans" },
-      { property: "og:title", content: "Pricing — Dverif" },
-      { property: "og:description", content: "Choose Monthly flexibility or yearly savings with transparent pricing for secure document verification." },
+      { title: "Pricing — Dverif | Document Verification & HR Management Plans" },
+      { name: "description", content: "Simple, honest pricing for document verification and organization management. Free plan with 1 request per day and employee management. Basic plan at PKR 20,000/month. Professional plan at PKR 30,000/month with everything included." },
+      { name: "keywords", content: "document verification pricing, verification plans, secure verification costs, document authentication pricing, background check pricing, verification service plans, HR software pricing, employee management pricing, payroll software price Pakistan" },
+      { property: "og:title", content: "Pricing — Dverif | Document Verification & HR Plans" },
+      { property: "og:description", content: "Free plan with employee management, Basic at PKR 20,000/month, Professional at PKR 30,000/month. Transparent pricing for secure document verification and organization management." },
       { property: "og:url", content: "https://dverif.com/pricing" },
-      { property: "og:image", content: "https://dverif.com/assets/og-image.png" },
+      { property: "og:image", content: "https://dverif.com/assets/logo-light.png" },
+      { property: "og:type", content: "website" },
+      { property: "og:locale", content: "en_US" },
+      { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Pricing — Dverif" },
-      { name: "twitter:description", content: "Choose Monthly flexibility or yearly savings with transparent pricing for secure document verification." },
-      { name: "twitter:image", content: "https://dverif.com/assets/og-image.png" },
+      { name: "twitter:description", content: "Free plan with employee management, Basic at PKR 20,000/month, Professional at PKR 30,000/month with everything included." },
+      { name: "twitter:image", content: "https://dverif.com/assets/logo-light.png" },
     ],
     links: [
       { rel: "canonical", href: "https://dverif.com/pricing" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        innerHTML: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Product",
+          "name": "Dverif — Document Verification & Organization Management Plans",
+          "url": "https://dverif.com/pricing",
+          "description": "Dverif offers three plans: Free with 1 request per day and employee management, Basic at PKR 20,000/month with attendance, employee, user, and leave management, and Professional at PKR 30,000/month with everything including payroll.",
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "0",
+            "highPrice": "30000",
+            "priceCurrency": "PKR",
+            "offerCount": "3",
+            "offers": [
+              {
+                "@type": "Offer",
+                "name": "Free Plan",
+                "price": "0",
+                "priceCurrency": "PKR",
+                "description": "1 request per day and employee management",
+                "availability": "https://schema.org/InStock",
+                "url": "https://dverif.com/pricing"
+              },
+              {
+                "@type": "Offer",
+                "name": "Basic Plan",
+                "price": "20000",
+                "priceCurrency": "PKR",
+                "description": "10 requests per day, attendance, employee, user, and leave management",
+                "availability": "https://schema.org/InStock",
+                "url": "https://dverif.com/pricing"
+              },
+              {
+                "@type": "Offer",
+                "name": "Professional Plan",
+                "price": "30000",
+                "priceCurrency": "PKR",
+                "description": "100 requests per day, everything in Basic plus payroll management",
+                "availability": "https://schema.org/InStock",
+                "url": "https://dverif.com/pricing"
+              }
+            ]
+          },
+          "brand": {
+            "@type": "Organization",
+            "name": "Dverif",
+            "url": "https://dverif.com"
+          }
+        }),
+      },
     ],
   }),
   component: Page,
@@ -55,8 +111,8 @@ const STATIC_PLANS: MarketingPlan[] = [
     price: "PKR 0",
     period: "/ Month",
     description: "Start for Free",
-    features: ["1 request per day"],
-    notIncludedFeatures: [ "Attendance Management", "Employee Management", "User Management", "Leave Management" , "Payroll Management"],
+    features: ["1 request per day", "Employee Management"],
+    notIncludedFeatures: ["Attendance Management", "User Management", "Leave Management", "Payroll Management"],
   },
   {
     id: "monthly",
@@ -64,8 +120,8 @@ const STATIC_PLANS: MarketingPlan[] = [
     price: "PKR 20,000",
     period: "/ Month",
     description: "Flexible Monthly Billing",
-    features: ["10 request per day",  "Attendance Management", "Employee Management", "User Management", "Leave Management"],
-    notIncludedFeatures:["Payroll Management"],
+    features: ["10 requests per day", "Attendance Management", "Employee Management", "User Management", "Leave Management"],
+    notIncludedFeatures: ["Payroll Management"],
   },
   {
     id: "yearly",
@@ -74,7 +130,7 @@ const STATIC_PLANS: MarketingPlan[] = [
     period: "/ Month",
     description: "Best Value for Growing Teams",
     featured: true,
-    features: ["100 request per day" , "Attendance Management", "Employee Management", "User Management", "Leave Management" , "Payroll Management"],
+    features: ["100 requests per day", "Attendance Management", "Employee Management", "User Management", "Leave Management", "Payroll Management"],
   },
 ];
 

@@ -25,26 +25,46 @@ import { ReadyToSimplify } from "@/components/footer";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Dverif — Verify Documents in Minutes | Secure Document Verification Platform" },
+      { title: "Dverif — Verify Documents in Minutes | Secure Document Verification & HR Platform" },
       {
         name: "description",
         content:
-          "Dverif is an invite-only platform to verify documents in minutes. Stop scams, cut hassle, eliminate delays with secure document verification for modern organizations.",
+          "Dverif is a secure document verification and organization management platform. Verify documents in minutes, stop scams, and manage employees, attendance, leave, and payroll from one place.",
       },
-      { name: "keywords", content: "document verification, secure verification, identity verification, scam prevention, document authentication, background checks, employment verification, academic verification, certificate verification" },
+      { name: "keywords", content: "document verification, secure verification, identity verification, scam prevention, document authentication, background checks, employment verification, academic verification, certificate verification, employee management, attendance management, leave management, payroll management, HR software Pakistan" },
+      { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" },
+      { property: "og:type", content: "website" },
       { property: "og:title", content: "Dverif — Verify Documents in Minutes" },
       {
         property: "og:description",
-        content: "Invite-only document verification for modern organizations. Stop scams, cut hassle, eliminate delays.",
+        content: "Verify documents in minutes and manage employees, attendance, leave, and payroll from one place. Stop scams and streamline your workflows.",
       },
       { property: "og:url", content: "https://dverif.com" },
-      { property: "og:image", content: "https://dverif.com/assets/og-image.png" },
+      { property: "og:image", content: "https://dverif.com/assets/logo-light.png" },
+      { property: "og:locale", content: "en_US" },
       { name: "twitter:title", content: "Dverif — Verify Documents in Minutes" },
-      { name: "twitter:description", content: "Invite-only document verification for modern organizations. Stop scams, cut hassle, eliminate delays." },
-      { name: "twitter:image", content: "https://dverif.com/assets/og-image.png" },
+      { name: "twitter:description", content: "Verify documents in minutes and manage employees, attendance, leave, and payroll from one place." },
+      { name: "twitter:image", content: "https://dverif.com/assets/logo-light.png" },
     ],
     links: [
       { rel: "canonical", href: "https://dverif.com" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        innerHTML: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Dverif — Verify Documents in Minutes",
+          "url": "https://dverif.com",
+          "description": "Dverif is a secure document verification and organization management platform.",
+          "isPartOf": { "@id": "https://dverif.com/#website" },
+          "primaryImageOfPage": {
+            "@type": "ImageObject",
+            "url": "https://dverif.com/assets/logo-light.png"
+          }
+        }),
+      },
     ],
   }),
   component: Home,

@@ -212,21 +212,40 @@ const FAQ_ITEMS = [
 export const Route = createFileRoute("/faq")({
   head: () => ({
     meta: [
-      { title: "Dverif FAQ" },
-      { name: "description", content: "Find answers to common questions about Dverif verification, employee management, attendance, payroll, security, and more." },
-      { name: "keywords", content: "document verification FAQ, verification questions, Dverif FAQ, document verification help, verification process, secure verification questions" },
-      { property: "og:title", content: "FAQ — Dverif Document Verification" },
-      { property: "og:description", content: "Find answers to common questions about Dverif verification, employee management, attendance, payroll, security, and more." },
+      { title: "Dverif FAQ | Document Verification, Employee, Attendance & Payroll Questions" },
+      { name: "description", content: "Get answers to common Dverif questions about document verification, employee management, attendance tracking, leave management, payroll, security, pricing, and account support." },
+      { name: "keywords", content: "document verification FAQ, verification questions, Dverif FAQ, document verification help, verification process, secure verification questions, employee management questions, attendance tracking questions, payroll questions" },
+      { property: "og:title", content: "Dverif FAQ — Document Verification & Organization Management" },
+      { property: "og:description", content: "Get answers to common questions about Dverif verification, employee management, attendance, payroll, security, and more." },
       { property: "og:url", content: "https://dverif.com/faq" },
-      { property: "og:image", content: "https://dverif.com/assets/og-image.png" },
+      { property: "og:image", content: "https://dverif.com/assets/logo-light.png" },
       { property: "og:type", content: "website" },
+      { property: "og:locale", content: "en_US" },
+      { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "FAQ — Dverif Document Verification" },
-      { name: "twitter:description", content: "Find answers to common questions about Dverif verification, employee management, attendance, payroll, security, and more." },
-      { name: "twitter:image", content: "https://dverif.com/assets/og-image.png" },
+      { name: "twitter:title", content: "Dverif FAQ — Document Verification & Organization Management" },
+      { name: "twitter:description", content: "Get answers to common questions about Dverif verification, employee management, attendance, payroll, security, and more." },
+      { name: "twitter:image", content: "https://dverif.com/assets/logo-light.png" },
     ],
     links: [
       { rel: "canonical", href: "https://dverif.com/faq" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        innerHTML: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": FAQ_ITEMS.map((item) => ({
+            "@type": "Question",
+            "name": item.q,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": item.a,
+            },
+          })),
+        }),
+      },
     ],
   }),
   component: FaqPage,

@@ -3,7 +3,7 @@ import {
 } from "@/components/ui/accordion";
 
 export const faqItems = [
-  { q: "Is Dverif open for signup?", a: "No — Dverif is invite-only. Request access and our team will reach out." },
+  { q: "How do I get started with Dverif?", a: "Request access and our team will set you up on a plan that fits your organization." },
   { q: "How fast is a typical verification?", a: "Most verifications complete in minutes when the issuer is on Dverif." },
   { q: "Do you support bulk requests?", a: "Yes, teams on paid plans can send and track requests in bulk with a full audit trail." },
   { q: "How do you prevent fraud?", a: "We verify directly with issuers and flag tampering, duplicates and mismatches automatically." },

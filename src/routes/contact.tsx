@@ -18,20 +18,53 @@ import { submitContactForm } from "@/config/api";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — Dverif | Get in Touch with Document Verification Experts" },
-      { name: "description", content: "Get in touch with the Dverif team for document verification support, questions, or partnership inquiries. Contact us via email, WhatsApp, or our contact form." },
-      { name: "keywords", content: "contact Dverif, document verification support, verification help, customer support, partnership inquiries, Dverif contact information" },
-      { property: "og:title", content: "Contact — Dverif" },
-      { property: "og:description", content: "Get in touch with the Dverif team for document verification support and inquiries." },
+      { title: "Contact — Dverif | Get in Touch with Document Verification & HR Experts" },
+      { name: "description", content: "Contact the Dverif team for document verification, employee management, attendance, leave, or payroll support. Reach us via email at contact@dverif.com, WhatsApp, or our contact form." },
+      { name: "keywords", content: "contact Dverif, document verification support, verification help, customer support, partnership inquiries, Dverif contact information, HR software support, employee management help" },
+      { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" },
+      { property: "og:type", content: "website" },
+      { property: "og:title", content: "Contact — Dverif | Get in Touch" },
+      { property: "og:description", content: "Contact the Dverif team for document verification and organization management support. Email, WhatsApp, or contact form." },
       { property: "og:url", content: "https://dverif.com/contact" },
-      { property: "og:image", content: "https://dverif.com/assets/og-image.png" },
+      { property: "og:image", content: "https://dverif.com/assets/logo-light.png" },
+      { property: "og:locale", content: "en_US" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Contact — Dverif" },
-      { name: "twitter:description", content: "Get in touch with the Dverif team for document verification support and inquiries." },
-      { name: "twitter:image", content: "https://dverif.com/assets/og-image.png" },
+      { name: "twitter:title", content: "Contact — Dverif | Get in Touch" },
+      { name: "twitter:description", content: "Contact the Dverif team for document verification and organization management support." },
+      { name: "twitter:image", content: "https://dverif.com/assets/logo-light.png" },
     ],
     links: [
       { rel: "canonical", href: "https://dverif.com/contact" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        innerHTML: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ContactPage",
+          "name": "Contact Dverif",
+          "url": "https://dverif.com/contact",
+          "description": "Get in touch with the Dverif team for support, questions, or partnership inquiries.",
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": "Dverif",
+            "url": "https://dverif.com"
+          },
+          "mainEntity": {
+            "@type": "Organization",
+            "name": "Dverif",
+            "email": "contact@dverif.com",
+            "telephone": "+923199421413",
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "email": "contact@dverif.com",
+              "telephone": "+923199421413",
+              "contactType": "customer support",
+              "availableLanguage": "English"
+            }
+          }
+        }),
+      },
     ],
   }),
   component: Page,

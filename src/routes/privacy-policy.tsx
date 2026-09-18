@@ -24,20 +24,40 @@ const privacySections = [
 export const Route = createFileRoute("/privacy-policy")({
   head: () => ({
     meta: [
-      { title: "Dverif Privacy Policy" },
-      { name: "description", content: "Learn how Dverif collects, uses, protects, and manages information across its platform." },
-      { name: "keywords", content: "privacy policy, data protection, document verification privacy, secure verification, data security, Dverif privacy" },
+      { title: "Privacy Policy — Dverif | Data Protection & Privacy" },
+      { name: "description", content: "Learn how Dverif collects, uses, protects, and manages information across its document verification and organization management platform. Your privacy matters." },
+      { name: "keywords", content: "privacy policy, data protection, document verification privacy, secure verification, data security, Dverif privacy, HR software privacy, employee data privacy" },
+      { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" },
+      { property: "og:type", content: "website" },
       { property: "og:title", content: "Privacy Policy — Dverif" },
       { property: "og:description", content: "Learn how Dverif collects, uses, protects, and manages information across its platform." },
       { property: "og:url", content: "https://dverif.com/privacy-policy" },
-      { property: "og:image", content: "https://dverif.com/assets/og-image.png" },
+      { property: "og:image", content: "https://dverif.com/assets/logo-light.png" },
+      { property: "og:locale", content: "en_US" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Privacy Policy — Dverif" },
       { name: "twitter:description", content: "Learn how Dverif collects, uses, protects, and manages information across its platform." },
-      { name: "twitter:image", content: "https://dverif.com/assets/og-image.png" },
+      { name: "twitter:image", content: "https://dverif.com/assets/logo-light.png" },
     ],
     links: [
       { rel: "canonical", href: "https://dverif.com/privacy-policy" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        innerHTML: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Dverif Privacy Policy",
+          "url": "https://dverif.com/privacy-policy",
+          "description": "Learn how Dverif collects, uses, protects, and manages information across its platform.",
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": "Dverif",
+            "url": "https://dverif.com"
+          }
+        }),
+      },
     ],
   }),
   component: PrivacyPolicyPage,
