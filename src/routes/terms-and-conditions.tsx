@@ -124,7 +124,7 @@ function TermsAndConditionsPage() {
       <section className="section-band section-y pt-4 sm:pt-6">
         <div className="container-page">
           <div className="section-frame p-5 sm:p-8 lg:p-10">
-            <div className="lg:grid lg:grid-cols-[1fr_280px] lg:gap-12">
+            <div className="grid gap-6 lg:grid-cols-[1fr_280px] lg:gap-12">
               {/* Main Content */}
               <div className="space-y-12" style={{ maxWidth: "900px" }}>
                 {/* Section 1: About Dverif */}
@@ -616,7 +616,7 @@ function TermsAndConditionsPage() {
               </aside>
 
               {/* Mobile Table of Contents */}
-              <div className="lg:hidden">
+              <div className="order-first lg:hidden">
                 <button
                   onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                   className="w-full flex items-center justify-between rounded-xl border border-border bg-card p-4 text-left"

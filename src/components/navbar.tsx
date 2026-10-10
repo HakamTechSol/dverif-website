@@ -46,7 +46,7 @@ export function Navbar() {
                 to={l.to}
                 className={`relative rounded-lg px-4 py-2 text-sm font-medium transition-all duration-400 lg:px-5 after:absolute after:inset-x-3 after:bottom-1 after:h-0.5 after:origin-left after:rounded-full after:bg-primary after:transition-transform after:duration-300 ${
                   path === l.to
-                    ? "bg-primary/10 text-primary after:scale-x-100"
+                    ? "text-primary after:scale-x-100"
                     : "text-muted-foreground after:scale-x-0 hover:text-foreground hover:after:scale-x-100"
                 }`}
               >
