@@ -8,7 +8,13 @@ import {
   KeyRound,
   LayoutDashboard,
   ShieldCheck,
+  FileSearch,
   UsersRound,
+  BriefcaseBusiness,
+  UserRoundPlus,
+  UserRoundMinus,
+  Receipt,
+  FileSignature
 } from "lucide-react";
 import { useState } from "react";
 
@@ -26,15 +32,91 @@ const journeys = [
 
 const capabilities = [
   { icon: KeyRound, title: "Authentication & Security", points: ["Email + password login with OTP (one-time-password) verification.", "JWT access tokens with rotating refresh tokens (blacklist on logout).", "Forgot / reset / set password flows with secure email links.", "Rate limiting, Helmet headers, CORS allow-listing, and input validation.", "Role-based access: Super Admin, Org Admin, Employee.", "Audit logging of sensitive actions and full login history tracking."] },
-  { icon: FileCheck2, title: "Verification & Certificates", featured: true, points: ["Generate verification certificates (employment, attendance, salary) rendered as PDF with an embedded QR code.", "Public /verify/:qrToken page lets anyone scan & verify a certificate instantly — tamper detection included.", "Verification request inbox and request lifecycle (pending → verified)."] },
+  {
+    icon: FileCheck2,
+    title: "Verification & Certificates",
+    featured: true,
+    points: [
+      "Generate verification certificates (employment, attendance, salary) rendered as PDF with an embedded QR code.",
+      "Public /verify/:qrToken page lets anyone scan & verify a certificate instantly — tamper detection included.",
+
+      // 👇 YAHAN AUTO VERIFICATION ADD KARO
+      "Auto Verification: Automatically process eligible verification requests and update verification results, reducing manual intervention.",
+
+      "Verification request inbox and request lifecycle (pending → verified)."
+    ]
+  },
+  { icon: ChartNoAxesCombined, title: "Dashboard, Analytics & i18n", points: ["Charts and KPIs for attendance, leaves, verifications, and organization health.", "Built-in i18n with English and Urdu locales."] },
   { icon: Building2, title: "Organizations (Multi-Tenant)", points: ["Each organization is isolated with its own members, data, branding (logo), and subscription plan.", "Org Admin dashboard to manage the team, templates, and settings."] },
   { icon: UsersRound, title: "Employee & Team Management", points: ["Create and manage employee profiles with document uploads.", "Organization-scoped employee directory and org-admin controls."] },
   { icon: CalendarDays, title: "Attendance & Leave Management", points: ["Clock-in / clock-out and attendance tracking per employee and per org.", "Org-level attendance views and reporting.", "Request and approve leaves with balance tracking.", "Employee and Org-Admin leave dashboards."] },
   { icon: FileText, title: "Payroll & Salary", points: ["Salary records and auto-generated payslip PDFs.", "Payroll dashboard for employees and org admins."] },
-  { icon: ChartNoAxesCombined, title: "Dashboard, Analytics & i18n", points: ["Charts and KPIs for attendance, leaves, verifications, and organization health.", "Built-in i18n with English and Urdu locales."] },
   { icon: LayoutDashboard, title: "Dynamic Templates & Requests", points: ["Org Admins build custom request templates with configurable fields.", "Employees submit requests against templates; data rendered dynamically."] },
   { icon: CreditCard, title: "Payments & Subscriptions", points: ["Payment gateway integration, plans, and subscription gating (SubscriptionLocked UI when a plan expires).", "Admin payments dashboard and plan management."] },
-  { icon: ShieldCheck, title: "Leads & Admin Console", points: ["Super-admin lead capture and management.", "Admin dashboards: users, organizations, payments, activity logs, unresponsive orgs, and null-request monitoring."] },
+  // Add these objects inside your existing capabilities array
+
+  {
+    icon: BriefcaseBusiness,
+    title: "Recruitment Management",
+    points: [
+      "Manage recruitment activities and job applicants through a centralized recruitment pipeline.",
+      "Track candidate progress through different hiring stages.",
+      "Manage interview processes and interview evaluations.",
+      "Prepare and send employment offers to selected candidates.",
+      "Prevent offer progression when a candidate fails the final interview."
+    ]
+  },
+  {
+    icon: UserRoundPlus,
+    title: "Employee Onboarding",
+    points: [
+      "Manage the onboarding process for newly hired employees.",
+      "Maintain employee onboarding information and records.",
+      "Organize employee documentation during the onboarding process.",
+      "Keep employee onboarding activities connected with organization records."
+    ]
+  },
+  {
+    icon: UserRoundMinus,
+    title: "Employee Offboarding",
+    points: [
+      "Manage employee offboarding processes within the organization.",
+      "Maintain employee exit-related records and documentation.",
+      "Organize offboarding information for administrative reference.",
+      "Keep employee lifecycle records organized."
+    ]
+  },
+  {
+    icon: Receipt,
+    title: "Expense Management",
+    points: [
+      "Manage and organize employee expense records.",
+      "Maintain expense-related information within the organization.",
+      "Provide administrators with centralized expense management visibility.",
+      "Keep expense records accessible for administrative review."
+    ]
+  },
+  {
+    icon: FileSignature,
+    title: "Letters & Document Templates",
+    points: [
+      "Manage reusable employment letter and document templates.",
+      "Create and organize standardized HR documents.",
+      "Generate consistent employee-related documentation.",
+      "Keep organizational document templates centralized and accessible."
+    ]
+  },
+  {
+    icon: FileSearch,
+    title: "Document & Employment Verification",
+    points: [
+      "Manage document verification requests and their status.",
+      "Verify employment-related information through the verification workflow.",
+      "Generate digital verification certificates with embedded QR codes.",
+      "Allow third parties to verify certificates through a public verification page.",
+      "Maintain verification records and request history."
+    ]
+  },
 ];
 
 export function ProductJourney() {
@@ -57,9 +139,8 @@ export function ProductJourney() {
             {journeys.map(({ text, description, image }, index) => (
               <div
                 key={text}
-                className={`group relative flex h-60 flex-col cursor-pointer overflow-hidden rounded-xl transition-all duration-500 ease-out sm:h-72 lg:h-auto ${
-                  hoveredIndex === index ? 'lg:flex-[3]' : 'lg:flex-[1]'
-                }`}
+                className={`group relative flex h-60 flex-col cursor-pointer overflow-hidden rounded-xl transition-all duration-500 ease-out sm:h-72 lg:h-auto ${hoveredIndex === index ? 'lg:flex-[3]' : 'lg:flex-[1]'
+                  }`}
                 onMouseEnter={() => setHoveredIndex(index)}
               >
                 {/* Background Image */}
@@ -83,9 +164,8 @@ export function ProductJourney() {
                 <div className="absolute inset-x-0 bottom-0 z-10 h-40 bg-gradient-to-t from-black/60 to-transparent" />
 
                 {/* Description (Only on expanded card) */}
-                <div className={`relative z-20 mt-auto p-6 lg:p-8 transition-all duration-500 ease-out ${
-                  hoveredIndex === index ? 'opacity-100 translate-y-0' : 'lg:opacity-0 lg:translate-y-4'
-                }`}>
+                <div className={`relative z-20 mt-auto p-6 lg:p-8 transition-all duration-500 ease-out ${hoveredIndex === index ? 'opacity-100 translate-y-0' : 'lg:opacity-0 lg:translate-y-4'
+                  }`}>
                   <p className="text-base text-white text-center">{description}</p>
                 </div>
               </div>
